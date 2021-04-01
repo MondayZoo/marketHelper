@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="normal_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="colorAccent">@color/color_D10D0B</item>
+    </style>
+
+    <!-- my loading dialog -->
+    <style name="MyDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="default_text_style">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_333333</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+
+    <style name="default_medium_text_style" parent="default_text_style">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="text_bold_black_style">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="text_gray_16sp_style">
+        <item name="android:textColor">@color/gray_100</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="text_black_16sp_style">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+</resources>

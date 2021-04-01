@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.month.markethelper.activity.vm.RegisterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:fitsSystemWindows="true">
+
+        <include
+            android:id="@+id/actionbar_rl"
+            layout="@layout/actionbar_layout" />
+
+        <TextView
+            android:id="@+id/register_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_40"
+            android:layout_marginStart="@dimen/d_46"
+            android:text="@string/register_txt"
+            android:textColor="@color/black"
+            android:textSize="@dimen/s_24"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actionbar_rl" />
+
+        <EditText
+            android:id="@+id/register_phone_num_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_40"
+            android:layout_marginStart="@dimen/d_46"
+            android:layout_marginEnd="@dimen/d_46"
+            android:background="@drawable/ui_login_et_underline_bg"
+            android:text="@={vm.phoneNum}"
+            android:hint="@string/login_bind_phone_hint"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:paddingBottom="@dimen/d_10"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_B2B2B2"
+            android:textCursorDrawable="@drawable/ui_login_cursor_bg"
+            android:textSize="@dimen/s_15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_title_tv" />
+
+        <EditText
+            android:id="@+id/register_real_name_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_20"
+            android:layout_marginStart="@dimen/d_46"
+            android:layout_marginEnd="@dimen/d_46"
+            android:background="@drawable/ui_login_et_underline_bg"
+            android:hint="@string/register_real_name"
+            android:text="@={vm.realName}"
+            android:paddingBottom="@dimen/d_10"
+            android:singleLine="true"
+            android:maxLength="6"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_B2B2B2"
+            android:textCursorDrawable="@drawable/ui_login_cursor_bg"
+            android:textSize="@dimen/s_15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_phone_num_et" />
+
+        <EditText
+            android:id="@+id/register_nick_name_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_20"
+            android:layout_marginStart="@dimen/d_46"
+            android:layout_marginEnd="@dimen/d_46"
+            android:background="@drawable/ui_login_et_underline_bg"
+            android:hint="@string/register_nick_name"
+            android:text="@={vm.nickName}"
+            android:paddingBottom="@dimen/d_10"
+            android:singleLine="true"
+            android:maxLength="10"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_B2B2B2"
+            android:textCursorDrawable="@drawable/ui_login_cursor_bg"
+            android:textSize="@dimen/s_15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_real_name_et" />
+
+        <TextView
+            android:id="@+id/register_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_40"
+            android:layout_marginLeft="@dimen/d_45"
+            android:layout_marginTop="@dimen/d_40"
+            android:layout_marginRight="@dimen/d_45"
+            android:background="@drawable/ui_login_btn_bg_selector"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/register_txt"
+            android:textColor="@color/white"
+            android:textSize="@dimen/s_14"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_nick_name_et" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.month.markethelper.fragment.user.UserViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f5f5f5">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/head_cl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_240"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:paddingTop="@dimen/d_48"
+            android:paddingHorizontal="@dimen/d_20"
+            android:background="@color/color_D10D0B">
+
+            <TextView
+                android:id="@+id/user_profile_tv"
+                android:layout_width="@dimen/d_42"
+                android:layout_height="@dimen/d_42"
+                android:background="@drawable/ic_default_profile"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent">
+            </TextView>
+
+            <TextView
+                android:id="@+id/user_nick_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/user_profile_tv"
+                app:layout_constraintLeft_toRightOf="@id/user_profile_tv"
+                android:layout_marginStart="@dimen/d_12"
+                android:textSize="@dimen/s_18"
+                style="@style/text_bold_black_style"
+                android:text="@{vm.userInfo.nickName}"/>
+
+            <TextView
+                android:id="@+id/user_phone_num_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/user_nick_name_tv"
+                app:layout_constraintLeft_toRightOf="@id/user_profile_tv"
+                android:layout_marginStart="@dimen/d_12"
+                android:textSize="@dimen/s_15"
+                android:text="@{vm.userInfo.phoneNum}"/>
+
+            <ImageView
+                android:id="@+id/user_setting_tv"
+                android:layout_width="@dimen/d_20"
+                android:layout_height="@dimen/d_20"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@drawable/ic_setting"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/wallet_ll"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_100"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/d_220"
+            android:layout_marginHorizontal="@dimen/d_15"
+            android:background="@drawable/ui_shape_corner_16dp_white_with_black_border"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/pay_tv"
+                    style="@style/text_bold_black_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/s_18"
+                    android:text="支出" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_02"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/s_14"
+                    android:text="最近消费" />
+
+                <TextView
+                    android:id="@+id/pay_account_tv"
+                    style="@style/text_bold_black_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_04"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/s_18"
+                    android:text="17.30元" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/income_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_13"
+                    android:layout_gravity="center_horizontal"
+                    style="@style/text_bold_black_style"
+                    android:textSize="@dimen/s_18"
+                    android:text="收入"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_02"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/s_14"
+                    android:text="店铺收入"/>
+
+                <TextView
+                    android:id="@+id/income_account_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_04"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="@dimen/s_18"
+                    style="@style/text_bold_black_style"
+                    android:text="0.30元" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="@dimen/d_210"
+            android:layout_height="@dimen/d_130"
+            android:background="@drawable/pic_cat"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/wallet_ll"
+            android:layout_marginBottom="@dimen/d_98"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+            <LinearLayout
+                android:id="@+id/user_address_ll"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/d_20"
+                android:background="@drawable/ui_shape_left_corner_20dp_white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/d_30"
+                    android:layout_height="@dimen/d_30"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/d_10"
+                    android:background="@drawable/ic_user_address" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|end"
+                    android:paddingEnd="@dimen/d_15"
+                    android:text="我的收货地址"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_store_ll"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/d_20"
+                android:layout_marginTop="@dimen/d_10"
+                android:background="@drawable/ui_shape_left_corner_20dp_white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_address_ll">
+
+                <ImageView
+                    android:layout_width="@dimen/d_30"
+                    android:layout_height="@dimen/d_30"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/d_10"
+                    android:background="@drawable/ic_user_store" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|end"
+                    android:paddingEnd="@dimen/d_15"
+                    android:text="我的店铺"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/user_exit_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginEnd="@dimen/d_20"
+                android:layout_marginTop="@dimen/d_10"
+                android:layout_marginBottom="@dimen/d_20"
+                android:background="@drawable/ui_shape_right_corner_20dp_white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_store_ll">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/d_15"
+                    android:layout_marginStart="@dimen/d_15"
+                    android:gravity="center|start"
+                    android:text="注销"
+                    android:textColor="@color/black" />
+
+                <ImageView
+                    android:layout_width="@dimen/d_24"
+                    android:layout_height="@dimen/d_24"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/d_10"
+                    android:background="@drawable/ic_user_exit" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

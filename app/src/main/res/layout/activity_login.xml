@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.month.markethelper.activity.vm.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <include
+            android:id="@+id/actionbar_rl"
+            layout="@layout/actionbar_layout" />
+
+        <TextView
+            android:id="@+id/title_tips_tv"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/d_55"
+            android:layout_marginTop="@dimen/d_95"
+            android:gravity="start|center_vertical"
+            android:includeFontPadding="false"
+            android:paddingStart="@dimen/d_45"
+            android:text="@string/login_sms_login_txt"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/s_22"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/login_phone_num_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_45"
+            android:layout_marginTop="@dimen/d_60"
+            android:layout_marginRight="@dimen/d_45"
+            android:background="@drawable/ui_login_et_underline_bg"
+            android:hint="@string/login_bind_phone_hint"
+            android:text="@={vm.phoneNum}"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:paddingBottom="@dimen/d_10"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_B2B2B2"
+            android:textCursorDrawable="@drawable/ui_login_cursor_bg"
+            android:textSize="@dimen/s_15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_tips_tv"
+            app:addTextChangedListener="@{vm.phoneNumWatcher}"/>
+
+        <ImageView
+            android:id="@+id/login_clear_iv"
+            android:layout_width="@dimen/d_28"
+            android:layout_height="@dimen/d_28"
+            android:padding="@dimen/d_05"
+            android:src="@drawable/ic_clear_gray"
+            android:visibility="@{vm.showClearBtn}"
+            android:onClick="@{()->vm.clearInput()}"
+            app:layout_constraintBottom_toBottomOf="@+id/login_phone_num_et"
+            app:layout_constraintRight_toRightOf="@+id/login_phone_num_et"
+            app:layout_constraintTop_toTopOf="@+id/login_phone_num_et"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/login_code_input_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d_45"
+            android:layout_marginTop="@dimen/d_20"
+            android:layout_marginEnd="@dimen/d_20"
+            android:background="@drawable/ui_login_et_underline_bg"
+            android:hint="@string/login_sms_code_hint"
+            android:inputType="number"
+            android:maxLength="6"
+            android:text="@={vm.smsCode}"
+            android:paddingBottom="@dimen/d_10"
+            android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_B2B2B2"
+            android:textCursorDrawable="@drawable/ui_login_cursor_bg"
+            android:textSize="@dimen/s_15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/get_sms_code_tv"
+            app:layout_constraintTop_toBottomOf="@+id/login_phone_num_et"
+            app:addTextChangedListener="@{vm.smsCodeWatcher}"/>
+
+        <TextView
+            android:id="@+id/get_sms_code_tv"
+            android:layout_width="120dp"
+            android:layout_height="@dimen/d_34"
+            android:layout_marginEnd="@dimen/d_45"
+            android:background="@drawable/ui_login_sms_code_bg_selector"
+            android:enabled="@{vm.canGetSmsCode}"
+            android:gravity="center"
+            android:text="@{vm.smsCodeText}"
+            android:textColor="@color/ui_login_sms_code_text_color_selector"
+            app:layout_constraintBottom_toBottomOf="@+id/login_code_input_et"
+            app:layout_constraintLeft_toRightOf="@+id/login_code_input_et"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/agree_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_code_input_et"
+            app:layout_constraintBottom_toTopOf="@+id/login_tv"
+            android:paddingStart="@dimen/d_45"
+            android:paddingEnd="@dimen/d_10"
+            android:onClick="@{()->vm.checkAgreement()}">
+
+            <TextView
+                android:id="@+id/agreement_check_tv"
+                android:layout_width="@dimen/d_15"
+                android:layout_height="@dimen/d_15"
+                android:layout_marginTop="@dimen/d_24"
+                android:background="@drawable/ui_check_button_bg_selector"
+                app:selected="@{vm.isCheckAgreement}"/>
+
+<!--            <RadioButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:checked="@{vm.isCheckAgreement}"/>-->
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/agreement_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_24"
+            android:text="@string/login_agreement_short_txt"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/s_12"
+            app:layout_constraintLeft_toRightOf="@+id/agree_layout"
+            app:layout_constraintTop_toBottomOf="@+id/login_code_input_et" />
+
+        <TextView
+            android:id="@+id/service_agreement_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_24"
+            android:text="@string/login_service_agreement"
+            android:textColor="@color/color_D10D0B"
+            android:textSize="@dimen/s_12"
+            app:layout_constraintBottom_toBottomOf="@+id/agreement_tv"
+            app:layout_constraintLeft_toRightOf="@+id/agreement_tv" />
+
+        <TextView
+            android:id="@+id/login_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_40"
+            android:layout_marginLeft="@dimen/d_45"
+            android:layout_marginTop="@dimen/d_20"
+            android:layout_marginRight="@dimen/d_45"
+            android:background="@drawable/ui_login_btn_bg_selector"
+            android:enabled="@{vm.canLogin}"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/login_txt"
+            android:textColor="@color/white"
+            android:textSize="@dimen/s_14"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/agreement_tv" />
+
+        <TextView
+            android:id="@+id/login_register_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_45"
+            android:layout_marginRight="@dimen/d_45"
+            android:paddingTop="@dimen/d_20"
+            android:gravity="center"
+            android:text="@string/register_title"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/s_14"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_tv" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

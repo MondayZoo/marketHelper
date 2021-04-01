@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.month.markethelper.activity.vm.AddressInfoViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".activity.AddressInfoActivity"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/actionbar_rl"
+            layout="@layout/actionbar_layout2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/address_info_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/actionbar_rl" />
+
+        <LinearLayout
+            android:id="@+id/address_form_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/actionbar_rl"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_gray_16sp_style"
+                    android:text="收获地址："/>
+
+                <TextView
+                    android:id="@+id/address_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_black_16sp_style" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_gray_16sp_style"
+                    android:text="门牌号："/>
+
+                <EditText
+                    android:id="@+id/house_number_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_black_16sp_style"
+                    android:background="@null"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_gray_16sp_style"
+                    android:text="联系人："/>
+
+                <EditText
+                    android:id="@+id/contacts_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_black_16sp_style"
+                    android:background="@null"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <RadioGroup
+                    android:id="@+id/gender_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/male_rb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/d_60"
+                        style="@style/text_black_16sp_style"
+                        android:text="先生"/>
+
+                    <RadioButton
+                        android:id="@+id/female_rb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/text_black_16sp_style"
+                        android:text="女士"/>
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_gray_16sp_style"
+                    android:text="手机号："/>
+
+                <EditText
+                    android:id="@+id/contact_number_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_black_16sp_style"
+                    android:background="@null"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginVertical="@dimen/d_10"
+                android:layout_marginHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_corner_8dp_red"
+                android:gravity="center"
+                style="@style/text_black_16sp_style"
+                android:text="保存"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_corner_8dp_red_border"
+                android:gravity="center"
+                style="@style/text_black_16sp_style"
+                android:text="删除"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>
