@@ -20,4 +20,8 @@ public class MapUtils {
         }
         return mLocationClient;
     }
+
+    public static void destroyLocationClient() {
+        mLocationClient = null;
+    }
 }

@@ -23,12 +23,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class RegisterActivity extends BaseActivityWithViewModel<ActivityRegisterBinding> implements View.OnClickListener {
 
-    //等待状态会话框
-    private Dialog mLoadingDialog;
-
-    //定位
-    private AMapLocationClient mLocationClient;
-
     private RegisterViewModel viewModel;
 
     //----------------------------basal method---------------------------------
@@ -48,30 +42,11 @@ public class RegisterActivity extends BaseActivityWithViewModel<ActivityRegister
     protected void initView() {
         findViewById(R.id.actionbar_back_tv).setOnClickListener(this);
         binding.registerTv.setOnClickListener(this);
-        mLoadingDialog = DialogUtils.createLoadingDialog(this, "定位中...");
     }
 
     @Override
     protected void initEvent() {
-        //自动定位
-//        binding.registerAddressEt.setOnFocusChangeListener((v, hasFocus) -> {
-//            if (hasFocus && TextUtils.isEmpty(viewModel.getAddress().getValue())) {
-//                mLoadingDialog.show();
-//                mLocationClient.startLocation();
-//                mLocationClient.setLocationListener(aMapLocation -> {
-//                    if (aMapLocation != null) {
-//                        if (aMapLocation.getErrorCode() == 0) {
-//                            viewModel.getAddress().setValue(aMapLocation.getAddress());
-//                            ToastUtils.showToast("定位成功！");
-//                        } else {
-//                            ToastUtils.showToast("定位失败，请手动输入地址。");
-//                        }
-//                    }
-//                    mLoadingDialog.dismiss();
-//                    mLocationClient.stopLocation();
-//                });
-//            }
-//        });
+
     }
 
     @Override
