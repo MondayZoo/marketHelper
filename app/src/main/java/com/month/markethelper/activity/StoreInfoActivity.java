@@ -5,18 +5,17 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 
 import com.amap.api.location.AMapLocationClient;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.gyf.immersionbar.ImmersionBar;
 import com.month.markethelper.R;
-import com.month.markethelper.activity.vm.AddressInfoViewModel;
-import com.month.markethelper.adapter.AddressInfoListAdapter;
+import com.month.markethelper.activity.vm.StoreInfoViewModel;
+import com.month.markethelper.adapter.StoreInfoListAdapter;
 import com.month.markethelper.base.BaseActivityWithViewModel;
-import com.month.markethelper.databinding.ActivityAddressInfoBinding;
-import com.month.markethelper.db.entity.AddressInfo;
+import com.month.markethelper.databinding.ActivityStoreInfoBinding;
+import com.month.markethelper.db.entity.Store;
 import com.month.markethelper.utils.DialogUtils;
 import com.month.markethelper.utils.MapUtils;
 import com.month.markethelper.utils.ToastUtils;
@@ -30,13 +29,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddressInfoBinding> implements View.OnClickListener {
+public class StoreInfoActivity extends BaseActivityWithViewModel<ActivityStoreInfoBinding> implements View.OnClickListener {
 
-    private static final String TAG = "AddressInfoActivity";
-    private AddressInfoViewModel viewModel;
+    private static final String TAG = "StoreInfoActivity";
+    private StoreInfoViewModel viewModel;
 
     //用户手机号
     private String userPhoneNum;
+
+    //待更新的store
+    private Store store;
 
     /**
      * 页面状态
@@ -47,9 +49,9 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
     private int state;
 
     private AppCompatTextView backTv, titleTv, rightTv;
-    private LinearLayout addressFormLayout;
-    private RecyclerView addressInfoList;
-    private AddressInfoListAdapter adapter;
+    private LinearLayout storeFormLayout;
+    private RecyclerView storeInfoList;
+    private StoreInfoListAdapter adapter;
 
     /**
      * 定位获取地址
@@ -61,12 +63,12 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_address_info;
+        return R.layout.activity_store_info;
     }
 
     @Override
     protected void initViewModel() {
-        viewModel = new ViewModelProvider(this).get(AddressInfoViewModel.class);
+        viewModel = new ViewModelProvider(this).get(StoreInfoViewModel.class);
         userPhoneNum = sharedPreferences.getString("user", null);
         viewModel.setUserPhoneNum(userPhoneNum);
         binding.setVm(viewModel);
@@ -78,16 +80,17 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
         backTv = findViewById(R.id.actionbar_back_tv);
         titleTv = findViewById(R.id.actionbar_title_tv);
         rightTv = findViewById(R.id.actionbar_right_tv);
-        addressFormLayout = binding.addressFormLl;
         ImmersionBar.with(this).statusBarColor(R.color.color_D10D0B).init();
+        //表单布局
+        storeFormLayout = binding.storeFormLl;
         //定位相关
         mLoadingDialog = DialogUtils.createLoadingDialog(this, "定位中...");
         mLocationClient = MapUtils.getLocationClient(this);
         //RecyclerView
-        addressInfoList = binding.addressInfoRv;
-        addressInfoList.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new AddressInfoListAdapter(R.layout.item_address_info);
-        addressInfoList.setAdapter(adapter);
+        storeInfoList = binding.storeInfoRv;
+        storeInfoList.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new StoreInfoListAdapter(R.layout.item_store_info);
+        storeInfoList.setAdapter(adapter);
     }
 
     @Override
@@ -95,27 +98,20 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
         backTv.setOnClickListener(this);
         rightTv.setOnClickListener(this);
         binding.addressTv.setOnClickListener(this);
-        binding.addressSaveBtn.setOnClickListener(this);
-        binding.addressDeleteBtn.setOnClickListener(this);
-        binding.genderSwitch.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                viewModel.getGender().setValue(checkedId == R.id.male_rb);
-            }
-        });
-        //更新地址信息
+        binding.storeSaveBtn.setOnClickListener(this);
+        binding.storeDeleteBtn.setOnClickListener(this);
+        //更新店铺信息
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 state = 2;
-                AddressInfo addressInfo = ((List<AddressInfo>) adapter.getData()).get(position);
-                viewModel.getAddress().setValue(addressInfo.getAddress());
-                viewModel.getHouseNum().setValue(addressInfo.getHouseNumber());
-                viewModel.getContacts().setValue(addressInfo.getContacts());
-                viewModel.getContactNumber().setValue(addressInfo.getContactNumber());
-                viewModel.getGender().setValue(addressInfo.isGender());
-                viewModel.setAddressId(addressInfo.getId());
-                showAddressInfoForm();
+                store = ((List<Store>) adapter.getData()).get(position);
+                viewModel.getStoreName().setValue(store.getStoreName());
+                viewModel.getAddress().setValue(store.getAddress());
+                viewModel.getType().setValue(store.getType());
+                viewModel.getContactNumber().setValue(store.getContactNumber());
+                viewModel.getIntro().setValue(store.getIntro());
+                showStoreInfoForm();
             }
         });
     }
@@ -127,10 +123,10 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
         //Actionbar右文本
         viewModel.getActionbarRightText().observe(this, s -> rightTv.setText(s));
         //列表数据
-        viewModel.getAddressInfoList().observe(this, new Observer<List<AddressInfo>>() {
+        viewModel.getStoreInfoList().observe(this, new Observer<List<Store>>() {
             @Override
-            public void onChanged(List<AddressInfo> addressInfos) {
-                adapter.setList(addressInfos);
+            public void onChanged(List<Store> stores) {
+                adapter.setList(stores);
             }
         });
     }
@@ -146,24 +142,24 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
         else if (id == R.id.actionbar_right_tv) {
             openForm();
         }
-        //自动定位获取收获地址
+        //自动定位获取店铺地址
         else if (id == R.id.address_tv) {
             getAddress();
         }
-        //保存新地址
-        else if (id == R.id.address_save_btn) {
+        //保存新店铺
+        else if (id == R.id.store_save_btn) {
             if (state == 1) {
-                viewModel.addNewAddress();
+                viewModel.addNewStore();
             }
             else if (state == 2) {
-                viewModel.updateAddress();
+                viewModel.updateStore(store);
             }
-            showAddressInfoList();
+            showStoreInfoList();
         }
-        //删除地址
-        else if (id == R.id.address_delete_btn) {
-            viewModel.deleteAddress();
-            showAddressInfoList();
+        //删除店铺
+        else if (id == R.id.store_delete_btn) {
+            viewModel.deleteStore(store);
+            showStoreInfoList();
         }
     }
 
@@ -181,7 +177,7 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
                 break;
             case 1:
             case 2:
-                showAddressInfoList();
+                showStoreInfoList();
                 break;
         }
     }
@@ -192,7 +188,7 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
     private void openForm() {
         if (state == 0) {
             state = 1;
-            showAddressInfoForm();
+            showStoreInfoForm();
         }
     }
 
@@ -207,6 +203,8 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
                 if (aMapLocation != null) {
                     if (aMapLocation.getErrorCode() == 0) {
                         viewModel.getAddress().setValue(aMapLocation.getAddress());
+                        viewModel.setLatitude(aMapLocation.getLatitude());
+                        viewModel.setLongitude(aMapLocation.getLongitude());
                         ToastUtils.showToast("定位成功！");
                     } else {
                         Log.e(TAG, "定位失败，错误码：" + aMapLocation.getErrorCode());
@@ -214,7 +212,6 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
                     }
                 }
                 mLoadingDialog.dismiss();
-                //mLocationClient.stopLocation();   //Do not do this.
             });
         }
     }
@@ -222,23 +219,24 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
     /**
      * 切换
      */
-    private void showAddressInfoList() {
+    private void showStoreInfoList() {
         state = 0;
-        addressFormLayout.setVisibility(View.GONE);
-        addressInfoList.setVisibility(View.VISIBLE);
-        binding.addressDeleteBtn.setVisibility(View.GONE);
+        storeFormLayout.setVisibility(View.GONE);
+        storeInfoList.setVisibility(View.VISIBLE);
+        binding.storeDeleteBtn.setVisibility(View.GONE);
         viewModel.getActionbarRightText().setValue("新增");
-        viewModel.getActionbarTitle().setValue("我的收货地址");
+        viewModel.getActionbarTitle().setValue("我的店铺");
         viewModel.clearForm();
+        store = null;
     }
 
-    private void showAddressInfoForm() {
+    private void showStoreInfoForm() {
         if (state == 2) {
-            binding.addressDeleteBtn.setVisibility(View.VISIBLE);
+            binding.storeDeleteBtn.setVisibility(View.VISIBLE);
         }
-        addressFormLayout.setVisibility(View.VISIBLE);
-        addressInfoList.setVisibility(View.GONE);
+        storeFormLayout.setVisibility(View.VISIBLE);
+        storeInfoList.setVisibility(View.GONE);
         viewModel.getActionbarRightText().setValue("");
-        viewModel.getActionbarTitle().setValue("编辑收货地址");
+        viewModel.getActionbarTitle().setValue("编辑店铺");
     }
 }

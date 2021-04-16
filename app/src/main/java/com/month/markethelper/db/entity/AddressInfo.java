@@ -11,6 +11,7 @@ public class AddressInfo {
     private long id;
 
     //编辑此收获地址的用户
+    @ColumnInfo(name = "phone_num")
     private String phoneNum;
 
     //地址

@@ -6,14 +6,14 @@
     <data>
         <variable
             name="vm"
-            type="com.month.markethelper.activity.vm.AddressInfoViewModel" />
+            type="com.month.markethelper.activity.vm.StoreInfoViewModel" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".activity.AddressInfoActivity"
+        tools:context=".activity.StoreInfoActivity"
         android:orientation="vertical">
 
         <include
@@ -21,13 +21,13 @@
             layout="@layout/actionbar_layout2" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/address_info_rv"
+            android:id="@+id/store_info_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/actionbar_rl" />
 
         <LinearLayout
-            android:id="@+id/address_form_ll"
+            android:id="@+id/store_form_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/actionbar_rl"
@@ -36,7 +36,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/d_50"
                 android:paddingHorizontal="@dimen/d_10"
                 android:background="@drawable/ui_shape_underline">
 
@@ -46,7 +46,61 @@
                     android:layout_weight="2"
                     android:layout_gravity="center_vertical"
                     style="@style/text_gray_16sp_style"
-                    android:text="收货地址："/>
+                    android:text="店铺名："/>
+
+                <EditText
+                    android:id="@+id/store_name_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_black_16sp_style"
+                    android:hint="请填写店铺名"
+                    android:text="@={vm.storeName}"
+                    android:background="@null"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_50"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_gray_16sp_style"
+                    android:text="服务类型："/>
+
+                <EditText
+                    android:id="@+id/store_type_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_black_16sp_style"
+                    android:hint="超市/餐饮/娱乐等"
+                    android:text="@={vm.type}"
+                    android:background="@null"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_50"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_gray_16sp_style"
+                    android:text="商家地址："/>
 
                 <TextView
                     android:id="@+id/address_tv"
@@ -54,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
                     android:layout_gravity="center_vertical"
-                    android:hint="点击自动获取"
+                    android:hint="点击定位。为确保地址准确，请您在店铺附近时进行定位。"
                     android:text="@={vm.address}"
                     style="@style/text_black_16sp_style" />
 
@@ -62,7 +116,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/d_50"
                 android:paddingHorizontal="@dimen/d_10"
                 android:background="@drawable/ui_shape_underline">
 
@@ -72,34 +126,7 @@
                     android:layout_weight="2"
                     android:layout_gravity="center_vertical"
                     style="@style/text_gray_16sp_style"
-                    android:text="门牌号："/>
-
-                <EditText
-                    android:id="@+id/house_number_tv"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
-                    android:layout_gravity="center_vertical"
-                    style="@style/text_black_16sp_style"
-                    android:hint="详细地址，例：16号楼5层501室"
-                    android:text="@={vm.houseNum}"
-                    android:background="@null"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:paddingHorizontal="@dimen/d_10"
-                android:background="@drawable/ui_shape_underline">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_gravity="center_vertical"
-                    style="@style/text_gray_16sp_style"
-                    android:text="联系人："/>
+                    android:text="联系方式："/>
 
                 <EditText
                     android:id="@+id/contacts_tv"
@@ -107,57 +134,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
                     android:layout_gravity="center_vertical"
+                    android:inputType="phone"
                     style="@style/text_black_16sp_style"
-                    android:hint="请填写收货人姓名"
-                    android:text="@={vm.contacts}"
+                    android:hint="请填写联系方式"
+                    android:text="@={vm.contactNumber}"
                     android:background="@null"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:paddingHorizontal="@dimen/d_10"
-                android:background="@drawable/ui_shape_underline">
-
-                <RadioGroup
-                    android:id="@+id/gender_switch"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <RadioButton
-                        android:id="@+id/male_rb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/d_60"
-                        style="@style/text_black_16sp_style"
-                        android:text="先生"/>
-
-                    <RadioButton
-                        android:id="@+id/female_rb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/text_black_16sp_style"
-                        android:text="女士"/>
-
-                </RadioGroup>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/d_100"
                 android:paddingHorizontal="@dimen/d_10"
                 android:background="@drawable/ui_shape_underline">
 
@@ -165,26 +152,28 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/d_15"
                     style="@style/text_gray_16sp_style"
-                    android:text="手机号："/>
+                    android:text="店铺简介："/>
 
                 <EditText
-                    android:id="@+id/contact_number_tv"
+                    android:id="@+id/intro_tv"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="6"
-                    android:layout_gravity="center_vertical"
-                    android:inputType="phone"
+                    android:layout_marginTop="@dimen/d_15"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:maxLength="50"
                     style="@style/text_black_16sp_style"
-                    android:hint="请填写收货人联系方式"
-                    android:text="@={vm.contactNumber}"
+                    android:hint="简单介绍一下店铺吧~"
+                    android:text="@={vm.intro}"
                     android:background="@null"/>
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/address_save_btn"
+                android:id="@+id/store_save_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_40"
                 android:layout_marginVertical="@dimen/d_10"
@@ -195,7 +184,7 @@
                 android:text="保存"/>
 
             <TextView
-                android:id="@+id/address_delete_btn"
+                android:id="@+id/store_delete_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_40"
                 android:layout_marginHorizontal="@dimen/d_10"

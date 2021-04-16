@@ -41,8 +41,8 @@ public interface AddressInfoDAO {
     void update(AddressInfo info);
 
     /**
-     * 查询某用户的所有收获地址
+     * 查询某用户的所有收货地址
      */
-    @Query("SELECT * FROM AddressInfo WHERE phoneNum = :phoneNum")
+    @Query("SELECT * FROM AddressInfo WHERE phone_num = :phoneNum")
     LiveData<List<AddressInfo>> findAllByPhoneNum(String phoneNum);
 }

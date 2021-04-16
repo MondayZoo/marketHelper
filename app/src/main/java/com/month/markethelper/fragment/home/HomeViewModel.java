@@ -1,27 +1,30 @@
 package com.month.markethelper.fragment.home;
 
-import android.app.Application;
-import android.content.Context;
-
 import com.month.markethelper.R;
+import com.month.markethelper.db.MarketDatabase;
+import com.month.markethelper.db.dao.StoreDAO;
+import com.month.markethelper.db.entity.Store;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel {
 
+    //轮播图
     private final List<Integer> bannerData = new ArrayList<>();
-
+    //左侧分类
     private final List<String> categoryData = new ArrayList<>();
 
+    private StoreDAO storeDAO;
+
     public HomeViewModel() {
+
+        MarketDatabase marketDatabase = MarketDatabase.getInstance();
+        storeDAO = marketDatabase.getStoreDao();
+
         initData();
     }
 
@@ -46,6 +49,8 @@ public class HomeViewModel extends ViewModel {
         categoryData.add("零食小吃");
     }
 
+    //----------------------------Getter Method---------------------------------
+
     public List<Integer> getBannerData() {
         return bannerData;
     }
@@ -54,4 +59,7 @@ public class HomeViewModel extends ViewModel {
         return categoryData;
     }
 
+    public LiveData<List<Store>> getContentData() {
+        return storeDAO.findAll();
+    }
 }

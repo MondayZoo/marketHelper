@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/d_24"
+    android:orientation="vertical"
+    tools:context=".activity.StoreActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/d_10">
+
+        <TextView
+            android:id="@+id/back_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_back_black"/>
+
+        <TextView
+            android:id="@+id/search_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/back_tv"
+            android:layout_toStartOf="@+id/favorite_tv"
+            android:layout_marginStart="@dimen/d_20"
+            android:layout_marginEnd="@dimen/d_20"
+            android:padding="@dimen/d_06"
+            android:drawablePadding="@dimen/d_06"
+            android:background="@drawable/ui_shape_corner_10dp_f8f8f8"
+            android:textSize="@dimen/s_12"
+            android:hint="请输入商品名"
+            app:drawableStartCompat="@drawable/ic_search" />
+
+        <TextView
+            android:id="@+id/favorite_tv"
+            android:layout_width="@dimen/d_24"
+            android:layout_height="@dimen/d_24"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/d_10"
+            android:background="@drawable/ic_favorite"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/store_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_50"
+            app:tabGravity="fill"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/store_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</LinearLayout>

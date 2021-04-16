@@ -4,10 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 
-import com.gyf.immersionbar.ImmersionBar;
 import com.month.markethelper.R;
 import com.month.markethelper.activity.AddressInfoActivity;
-import com.month.markethelper.activity.LoginActivity;
+import com.month.markethelper.activity.StoreInfoActivity;
 import com.month.markethelper.base.BaseFragment;
 import com.month.markethelper.databinding.FragmentUserBinding;
 import com.month.markethelper.utils.EmptyMessage;
@@ -44,6 +43,7 @@ public class UserFragment extends BaseFragment<FragmentUserBinding> implements V
     protected void initEvent() {
         binding.userExitLl.setOnClickListener(this);
         binding.userAddressLl.setOnClickListener(this);
+        binding.userStoreLl.setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +56,11 @@ public class UserFragment extends BaseFragment<FragmentUserBinding> implements V
         //我的收货地址
         else if (id == R.id.user_address_ll) {
             Intent intent = new Intent(getActivity(), AddressInfoActivity.class);
+            startActivity(intent);
+        }
+        //我的店铺
+        else if (id == R.id.user_store_ll) {
+            Intent intent = new Intent(getActivity(), StoreInfoActivity.class);
             startActivity(intent);
         }
     }

@@ -24,6 +24,8 @@ public class UserViewModel extends ViewModel {
         userInfo = new MutableLiveData<>();
     }
 
+    //----------------------------Getter Method---------------------------------
+
     public MutableLiveData<User> getUserInfo() {
         return userInfo;
     }

@@ -14,13 +14,17 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.gyf.immersionbar.ImmersionBar;
 import com.month.markethelper.MainActivity;
 import com.month.markethelper.R;
 import com.month.markethelper.activity.LoginActivity;
+import com.month.markethelper.activity.StoreActivity;
 import com.month.markethelper.adapter.LeftCategoryListAdapter;
+import com.month.markethelper.adapter.RightContentListAdapter;
 import com.month.markethelper.base.BaseFragment;
 import com.month.markethelper.databinding.FragmentHomeBinding;
+import com.month.markethelper.db.entity.Store;
 import com.month.markethelper.utils.EmptyMessage;
 import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerImageAdapter;
@@ -31,10 +35,13 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.List;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -110,6 +117,22 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
             leftCategoryListAdapter.notifyDataSetChanged();
         });
         //右侧内容列表
+        RecyclerView rightContentList = binding.rightContentList;
+        rightContentList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        RightContentListAdapter rightContentListAdapter = new RightContentListAdapter(R.layout.item_right_content);
+        rightContentList.setAdapter(rightContentListAdapter);
+        homeViewModel.getContentData().observe(getActivity(), new Observer<List<Store>>() {
+            @Override
+            public void onChanged(List<Store> stores) {
+                rightContentListAdapter.setList(stores);
+            }
+        });
+        rightContentListAdapter.setOnItemClickListener((adapter, view, position) -> {
+             long storeId = ((List<Store>) adapter.getData()).get(position).getId();
+             Intent intent = new Intent(getActivity(), StoreActivity.class);
+             intent.putExtra("storeId", storeId);
+             startActivity(intent);
+        });
     }
 
     //----------------------- lifecycle -----------------------------

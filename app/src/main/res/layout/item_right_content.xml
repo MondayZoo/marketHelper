@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/d_05"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/ui_shape_underline"
+    android:paddingHorizontal="@dimen/d_05"
+    android:paddingVertical="@dimen/d_10">
+
+    <TextView
+        android:id="@+id/store_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/d_10"
+        android:background="@drawable/ic_store"/>
+
+    <TextView
+        android:id="@+id/store_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/store_icon"
+        style="@style/text_black_16sp_style"
+        tools:text="亿多多奶茶"/>
+
+    <TextView
+        android:id="@+id/store_tips_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/store_name_tv"
+        android:paddingVertical="@dimen/d_02"
+        android:paddingHorizontal="@dimen/d_04"
+        android:layout_marginStart="@dimen/d_10"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:background="@drawable/ui_shape_corner_4dp_orange"
+        tools:text="新店"/>
+
+    <TextView
+        android:id="@+id/store_intro_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/store_icon"
+        android:layout_below="@id/store_name_tv"
+        android:layout_marginEnd="@dimen/d_05"
+        tools:text="浙江科技学院西和公寓 6号楼666"/>
+
+    <TextView
+        android:id="@+id/store_evaluation_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/store_icon"
+        android:layout_below="@id/store_intro_tv"
+        android:layout_marginEnd="@dimen/d_05"
+        android:textColor="@color/color_D10D0B"
+        tools:text="新店开张，速来体验！"/>
+
+</RelativeLayout>
