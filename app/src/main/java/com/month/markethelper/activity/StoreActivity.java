@@ -31,11 +31,12 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initView() {
         //初始化顶部导航栏
+        long storeId = getIntent().getLongExtra("storeId", 0);
         TabLayout tabLayout = findViewById(R.id.store_indicator);
         ViewPager2 viewPager2 = findViewById(R.id.store_pager);
-        StoreAdapter storeAdapter = new StoreAdapter(this);
+        StoreAdapter storeAdapter = new StoreAdapter(this, storeId);
         viewPager2.setAdapter(storeAdapter);
-        String title[] = new String[]{"菜单", "评论", "商家"};
+        String[] title = new String[]{"菜单", "评论", "商家"};
         new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
@@ -43,7 +44,7 @@ public class StoreActivity extends BaseActivity implements View.OnClickListener 
             }
         }).attach();
 
-        long storeId = getIntent().getLongExtra("storeId", 0);
+
         Log.e(TAG, "store id is --> " + storeId);
     }
 

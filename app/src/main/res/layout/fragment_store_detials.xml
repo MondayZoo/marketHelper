@@ -9,18 +9,150 @@
             type="com.month.markethelper.fragment.store.DetailsViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_f5f5f5">
+        android:background="@color/color_f5f5f5"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:text="啊啊啊啊啊啊啊啊啊"/>
+            android:layout_marginTop="@dimen/d_10"
+            android:background="@drawable/ui_shape_underline"
+            android:paddingStart="@dimen/d_08">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="@dimen/d_28"
+                android:layout_height="@dimen/d_28"
+                android:background="@drawable/ic_store2"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/store_name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/d_08"
+                android:paddingVertical="@dimen/d_10"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/s_16"
+                android:text="@{vm.store.storeName}"
+                style="@style/text_bold_black_style"
+                tools:text="老王杂货铺" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/store_address_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ui_shape_underline"
+            android:paddingStart="@dimen/d_10">
+
+            <TextView
+                android:layout_width="@dimen/d_20"
+                android:layout_height="@dimen/d_20"
+                android:background="@drawable/ic_address"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/store_address_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d_10"
+                android:text="@{vm.store.address}"
+                tools:text="浙江科技学院西和公寓3#1楼附近" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/store_contacts_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ui_shape_underline"
+            android:paddingStart="@dimen/d_10">
+
+            <TextView
+                android:layout_width="@dimen/d_20"
+                android:layout_height="@dimen/d_20"
+                android:background="@drawable/ic_contacts"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/store_contacts_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline"
+                android:text="@{vm.store.contactNumber}"
+                tools:text="13588742171"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ui_shape_underline"
+            android:layout_marginTop="@dimen/d_10"
+            android:paddingStart="@dimen/d_10">
+
+            <TextView
+                android:layout_width="@dimen/d_20"
+                android:layout_height="@dimen/d_20"
+                android:background="@drawable/ic_waimai"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d_10"
+                android:text="配送服务：不提供配送"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ui_shape_underline"
+            android:paddingStart="@dimen/d_10">
+
+            <TextView
+                android:layout_width="@dimen/d_20"
+                android:layout_height="@dimen/d_20"
+                android:background="@drawable/ic_timer"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d_10"
+                android:text="营业时间：8:00~22:00"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ui_shape_underline"
+            android:layout_marginTop="@dimen/d_10"
+            android:paddingStart="@dimen/d_10">
+
+            <TextView
+                android:layout_width="@dimen/d_20"
+                android:layout_height="@dimen/d_20"
+                android:background="@drawable/ic_inform"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline"
+                android:text="@{vm.store.intro}"
+                tools:text="公告：老王杂货铺，物美价廉，应有尽有，学生享受八折优惠起~"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </layout>

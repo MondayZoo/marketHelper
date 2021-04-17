@@ -59,6 +59,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     //Amap
     implementation 'com.amap.api:location:latest.integration'
+    implementation 'com.amap.api:map2d:latest.integration'
     //EventBus
     implementation 'org.greenrobot:eventbus:3.1.1'
 }

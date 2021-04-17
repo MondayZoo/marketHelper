@@ -13,11 +13,11 @@ public class StoreAdapter extends FragmentStateAdapter {
 
     private Fragment[] fragments;
 
-    public StoreAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public StoreAdapter(@NonNull FragmentActivity fragmentActivity, long storeId) {
         super(fragmentActivity);
-        MenuFragment menuFragment = new MenuFragment();
-        CommentFragment commentFragment = new CommentFragment();
-        DetailsFragment detailsFragment = new DetailsFragment();
+        MenuFragment menuFragment = MenuFragment.newInstance(storeId);
+        CommentFragment commentFragment = CommentFragment.newInstance(storeId);
+        DetailsFragment detailsFragment = DetailsFragment.newInstance(storeId);
         fragments = new Fragment[] {menuFragment, commentFragment, detailsFragment};
     }
 

@@ -1,5 +1,6 @@
 package com.month.markethelper.fragment.store;
 
+import android.os.Bundle;
 import android.view.View;
 
 import com.month.markethelper.R;
@@ -13,7 +14,18 @@ public class MenuFragment extends BaseFragment<FragmentStoreMenuBinding> impleme
 
     private MenuViewModel viewModel;
 
-    //----------------------------basal method---------------------------------
+    //---------------------------- Constructor --------------------------------
+    private MenuFragment() {};
+
+    public static MenuFragment newInstance(long storeId) {
+        MenuFragment fragment = new MenuFragment();
+        Bundle args = new Bundle();
+        args.putLong("storeId", storeId);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    //---------------------------- Basal Method ---------------------------------
 
     @Override
     protected int getLayoutResId() {

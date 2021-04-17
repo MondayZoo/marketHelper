@@ -40,10 +40,16 @@ public interface StoreDAO {
     void update(Store store);
 
     /**
-     * 查询某用户的所有店铺地址
+     * 查询某用户的所有店铺
      */
     @Query("SELECT * FROM store WHERE phone_num = :phoneNum")
     LiveData<List<Store>> findAllByPhoneNum(String phoneNum);
+
+    /**
+     * 根据ID查询店铺
+     */
+    @Query("SELECT * FROM store WHERE id = :storeId")
+    Store findStoreById(long storeId);
 
     /**
      * 查询所有店铺
