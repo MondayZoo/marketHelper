@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/d_12"
+    android:background="@drawable/ui_shape_underline">
+
+    <TextView
+        android:id="@+id/user_profile_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_default_profile"
+        android:layout_marginEnd="@dimen/d_10"
+        android:layout_marginBottom="@dimen/d_10"/>
+
+    <TextView
+        android:id="@+id/user_nick_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/user_profile_tv"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/s_16"
+        android:text="土拨鼠666"/>
+
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/user_profile_tv"
+        android:layout_below="@id/user_nick_name_tv"
+        android:layout_marginTop="@dimen/d_04"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="3.5"
+        android:stepSize="0.5"
+        style="@style/my_rating_bar_small_style"/>
+
+    <TextView
+        android:id="@+id/comment_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:text="2021.4.20"/>
+
+    <TextView
+        android:id="@+id/comment_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_profile_tv"
+        android:textColor="@color/black"
+        android:textSize="@dimen/s_16"
+        android:text="屎真好吃真好吃真好吃"/>
+
+</RelativeLayout>

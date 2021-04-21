@@ -18,6 +18,39 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="CustomDialogTheme" parent="@android:style/Theme.Dialog">
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 遮罩层 -->
+        <item name="android:backgroundDimAmount">0.5</item>
+    </style>
+
+    <!-- ratingBar -->
+    <style name="my_rating_bar_big_style"
+        arent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ui_star_rating_bar_big_bg</item>
+        <item name="android:minHeight">@dimen/d_30</item>
+        <item name="android:maxHeight">@dimen/d_30</item>
+    </style>
+
+    <style name="my_rating_bar_small_style"
+        arent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ui_star_rating_bar_small_bg</item>
+        <item name="android:minHeight">@dimen/d_24</item>
+        <item name="android:maxHeight">@dimen/d_24</item>
+    </style>
+
     <style name="default_text_style">
         <item name="android:includeFontPadding">false</item>
         <item name="android:layout_width">wrap_content</item>

@@ -27,5 +27,4 @@ public interface UserDAO {
     @Query("SELECT * FROM User where phone_num = :phoneNum")
     User findUser(String phoneNum);
 
-
 }

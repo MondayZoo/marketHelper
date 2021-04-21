@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -15,6 +16,12 @@ import com.month.markethelper.base.BaseApplication;
 
 public class DialogUtils {
 
+    /**
+     * 创建加载框
+     * @param context   上下文
+     * @param msg   显示的信息
+     * @return  Dialog
+     */
     public static Dialog createLoadingDialog(Context context, String msg) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_loading, null);// 得到加载view
@@ -39,8 +46,23 @@ public class DialogUtils {
         window.setGravity(Gravity.CENTER);
         window.setAttributes(lp);
         //loadingDialog.show();
-
         return loadingDialog;
+    }
+
+    /**
+     * 创建评论框
+     * @return  dialog
+     */
+    public static Dialog createCommentDialog(Context context) {
+        Dialog dialog = new Dialog(context, R.style.CustomDialogTheme);
+        dialog.setContentView(R.layout.dialog_comment);
+
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        dialog.setCanceledOnTouchOutside(false);
+        return dialog;
     }
 
     /**

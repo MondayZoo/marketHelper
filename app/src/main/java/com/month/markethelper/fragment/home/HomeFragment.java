@@ -78,8 +78,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     protected void initEvent() {
         //跳转至登录页面
         binding.loginTv.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), LoginActivity.class);
-            startActivity(intent);
+            showLoginActivity();
         });
     }
 
@@ -88,6 +87,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     public void onReceiveMessage(EmptyMessage message) {
         if (message.code == EmptyMessage.STATE_LOGIN) {
             binding.loginTipsLl.setVisibility(View.GONE);
+            userPhoneNum = sharedPreferences.getString("user", null);
         }
     }
 
@@ -128,11 +128,24 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
             }
         });
         rightContentListAdapter.setOnItemClickListener((adapter, view, position) -> {
-             long storeId = ((List<Store>) adapter.getData()).get(position).getId();
-             Intent intent = new Intent(getActivity(), StoreActivity.class);
-             intent.putExtra("storeId", storeId);
-             startActivity(intent);
+            if (null == userPhoneNum) {
+                showLoginActivity();
+            } else {
+                long storeId = ((List<Store>) adapter.getData()).get(position).getId();
+                Intent intent = new Intent(getActivity(), StoreActivity.class);
+                intent.putExtra("storeId", storeId);
+                startActivity(intent);
+            }
         });
+    }
+    //----------------------- Click Event Method---------------------------
+
+    /**
+     * 跳转至登录界面
+     */
+    private void showLoginActivity() {
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
     }
 
     //----------------------- lifecycle -----------------------------

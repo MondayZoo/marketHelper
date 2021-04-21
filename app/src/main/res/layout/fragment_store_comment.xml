@@ -9,12 +9,108 @@
             type="com.month.markethelper.fragment.store.CommentViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_f5f5f5">
 
+        <RelativeLayout
+            android:id="@+id/comment_head_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/d_10"
+            android:padding="@dimen/d_16"
+            android:background="@color/white">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/score_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/s_30"
+                android:textColor="@color/color_FF9000"
+                android:textStyle="bold"
+                android:text="@{vm.finalRating.toString()}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/score_tv"
+                android:layout_marginStart="@dimen/d_10"
+                android:textSize="@dimen/s_12"
+                android:text="商家评分"/>
+
+            <RatingBar
+                android:id="@+id/rating_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/score_tv"
+                android:layout_marginTop="@dimen/d_16"
+                android:layout_marginStart="@dimen/d_08"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="@{vm.finalRating}"
+                android:stepSize="0.1"
+                style="@style/my_rating_bar_big_style"/>
+
+            <TextView
+                android:id="@+id/comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/comment_favorite_rate"
+                android:layout_marginEnd="@dimen/d_40"
+                android:textSize="@dimen/s_12"
+                android:text="评论数"/>
+
+            <TextView
+                android:id="@+id/comment_count_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/comment_count"
+                android:layout_marginTop="@dimen/d_20"
+                android:textSize="@dimen/s_14"
+                android:textColor="@color/color_D10D0B"
+                android:textStyle="bold"
+                android:text="@{vm.commentCount}"/>
+
+            <TextView
+                android:id="@+id/comment_favorite_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/d_10"
+                android:textSize="@dimen/s_12"
+                android:text="好评率"/>
+
+            <TextView
+                android:id="@+id/comment_favorite_rate_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/comment_favorite_rate"
+                android:layout_marginTop="@dimen/d_20"
+                android:textSize="@dimen/s_14"
+                android:textColor="@color/color_D10D0B"
+                android:textStyle="bold"
+                android:text="@{vm.favoriteRate}"/>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/comment_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/comment_head_rl"
+            android:background="@color/white"
+            android:padding="@dimen/d_08"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/comment_publish_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/d_16"
+            android:src="@drawable/ic_comment"/>
+
+    </RelativeLayout>
 
 </layout>
