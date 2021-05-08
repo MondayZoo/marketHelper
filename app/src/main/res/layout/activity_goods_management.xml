@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.month.markethelper.activity.management.GoodsManagementViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.management.GoodsManagementActivity"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/d_40"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d_08"
+            android:textColor="#FFBD27"
+            android:textStyle="bold"
+            android:textSize="@dimen/s_18"
+            android:text="分类管理"/>
+
+        <TextView
+            android:id="@+id/category_add_tv"
+            android:layout_width="@dimen/d_24"
+            android:layout_height="@dimen/d_24"
+            android:layout_toStartOf="@id/category_delete_tv"
+            android:layout_marginEnd="@dimen/d_08"
+            android:layout_marginTop="@dimen/d_02"
+            android:background="@drawable/ic_add"/>
+
+        <TextView
+            android:id="@+id/category_delete_tv"
+            android:layout_width="@dimen/d_24"
+            android:layout_height="@dimen/d_24"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/d_08"
+            android:layout_marginTop="@dimen/d_02"
+            android:background="@drawable/ic_delete"/>
+
+        <com.month.markethelper.custom.TextFlowLayout
+            android:id="@+id/category_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/category_add_tv"
+            android:layout_marginBottom="@dimen/d_08" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d_08"
+            android:layout_below="@id/category_list"
+            android:textColor="#FFBD27"
+            android:textStyle="bold"
+            android:textSize="@dimen/s_18"
+            android:text="商品管理"/>
+
+        <TextView
+            android:id="@+id/content_icon_tv"
+            android:layout_width="@dimen/d_24"
+            android:layout_height="@dimen/d_24"
+            android:layout_below="@id/category_list"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/d_08"
+            android:layout_marginTop="@dimen/d_04"
+            android:background="@drawable/ic_category_management"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/content_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/content_icon_tv"
+            android:padding="@dimen/d_04"/>
+
+    </RelativeLayout>
+
+</layout>

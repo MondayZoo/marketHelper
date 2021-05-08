@@ -1,5 +1,6 @@
 package com.month.markethelper.adapter;
 
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;

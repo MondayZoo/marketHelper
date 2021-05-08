@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f5f5f5"
+    tools:context=".fragment.tools.ToolsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/management_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/d_16"
+        android:layout_marginTop="@dimen/d_48"/>
+
+</FrameLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/ui_shape_corner_16dp_white_with_black_border"
+    android:paddingVertical="@dimen/d_04"
+    android:paddingHorizontal="@dimen/d_10"
+    android:layout_margin="@dimen/d_06">
+
+    <TextView
+        android:id="@+id/category_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="新品上架"/>
+
+    <TextView
+        android:id="@+id/category_delete_tv"
+        android:layout_width="@dimen/d_16"
+        android:layout_height="@dimen/d_16"
+        android:layout_marginStart="@dimen/d_02"
+        android:layout_marginTop="@dimen/d_02"
+        android:background="@drawable/ic_x"
+        android:visibility="gone"/>
+
+</LinearLayout>

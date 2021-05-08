@@ -1,6 +1,8 @@
 package com.month.markethelper.activity;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -9,7 +11,9 @@ import android.widget.LinearLayout;
 import com.amap.api.location.AMapLocationClient;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.chad.library.adapter.base.listener.OnItemLongClickListener;
 import com.gyf.immersionbar.ImmersionBar;
+import com.month.markethelper.MainActivity;
 import com.month.markethelper.R;
 import com.month.markethelper.activity.vm.StoreInfoViewModel;
 import com.month.markethelper.adapter.StoreInfoListAdapter;
@@ -17,8 +21,11 @@ import com.month.markethelper.base.BaseActivityWithViewModel;
 import com.month.markethelper.databinding.ActivityStoreInfoBinding;
 import com.month.markethelper.db.entity.Store;
 import com.month.markethelper.utils.DialogUtils;
+import com.month.markethelper.utils.EmptyMessage;
 import com.month.markethelper.utils.MapUtils;
 import com.month.markethelper.utils.ToastUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -105,13 +112,30 @@ public class StoreInfoActivity extends BaseActivityWithViewModel<ActivityStoreIn
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 state = 2;
-                store = ((List<Store>) adapter.getData()).get(position);
+                store = (Store) adapter.getData().get(position);
                 viewModel.getStoreName().setValue(store.getStoreName());
                 viewModel.getAddress().setValue(store.getAddress());
                 viewModel.getType().setValue(store.getType());
                 viewModel.getContactNumber().setValue(store.getContactNumber());
                 viewModel.getIntro().setValue(store.getIntro());
                 showStoreInfoForm();
+            }
+        });
+        //长按进入店铺
+        adapter.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                //通知主页更新
+                EventBus.getDefault().post(EmptyMessage.getInstance(EmptyMessage.STATE_STORE));
+                //更新主页状态为商家状态
+                store = (Store) adapter.getData().get(position);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putLong("storeId", store.getId());
+                editor.apply();
+                //跳转到主页
+                Intent intent = new Intent(StoreInfoActivity.this, MainActivity.class);
+                startActivity(intent);
+                return true;
             }
         });
     }

@@ -22,6 +22,7 @@ public class CommentViewModel extends ViewModel {
 
     private CommentDAO commentDAO;
     private UserDAO userDAO;
+    private StoreDAO storeDAO;
 
     //总评相关
     private long storeId;
@@ -33,6 +34,7 @@ public class CommentViewModel extends ViewModel {
         MarketDatabase marketDatabase = MarketDatabase.getInstance();
         commentDAO = marketDatabase.getCommentDao();
         userDAO = marketDatabase.getUserDao();
+        storeDAO = marketDatabase.getStoreDao();
     }
 
     public void initLiveData() {
@@ -56,7 +58,7 @@ public class CommentViewModel extends ViewModel {
             this.commentCount.setValue("暂无");
             favoriteRate.setValue("暂无");
         } else {
-            finalRating.setValue(ratingSum / commentCount);
+            finalRating.setValue(Float.parseFloat(FormatUtils.oneDecimalFormat(ratingSum, commentCount)));
             this.commentCount.setValue(String.valueOf(commentCount));
             favoriteRate.setValue((FormatUtils.percentFormat(favoriteCount, commentCount)));
         }

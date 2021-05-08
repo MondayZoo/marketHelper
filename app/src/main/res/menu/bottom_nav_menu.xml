@@ -21,4 +21,9 @@
         android:icon="@drawable/app_main_tab_user"
         android:title="@string/title_user" />
 
+    <item
+        android:id="@+id/navigation_management"
+        android:icon="@drawable/app_main_tab_management"
+        android:title="@string/title_management"/>
+
 </menu>

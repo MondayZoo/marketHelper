@@ -18,4 +18,10 @@ public class FormatUtils {
         DecimalFormat df = new DecimalFormat("0");
         return df.format((float) a / b * 100) + "%";
     }
+
+    public static String oneDecimalFormat(float a, float b) {
+        if (b == 0) return null;
+        DecimalFormat df = new DecimalFormat("0.0");
+        return df.format(a / b);
+    }
 }

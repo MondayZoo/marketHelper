@@ -66,6 +66,22 @@ public class DialogUtils {
     }
 
     /**
+     * 创建分类对话框
+     * @return  dialog
+     */
+    public static Dialog createCategoryDialog(Context context) {
+        Dialog dialog = new Dialog(context, R.style.CustomDialogTheme);
+        dialog.setContentView(R.layout.dialog_add_category);
+
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.CENTER);
+        window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        dialog.setCanceledOnTouchOutside(false);
+        return dialog;
+    }
+
+    /**
      * 关闭dialog
      * @param mDialogUtils
      */

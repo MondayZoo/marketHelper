@@ -4,6 +4,7 @@
     <string name="title_tools">工具</string>
     <string name="title_notifications">消息</string>
     <string name="title_user">我的</string>
+    <string name="title_management">管理</string>
     <string name="text_please_input_goods">请输入商品名称</string>
     <string name="text_login_tips">登录后，查看实际销售商品及价格</string>
     <string name="login_sms_login_txt">手机号登录</string>

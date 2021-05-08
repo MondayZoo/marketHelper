@@ -44,6 +44,9 @@ public class Store {
     //店铺评价，从数据库随机获取一个
     private String evaluation;
 
+    //商品分类
+    private String category;
+
     public long getId() {
         return id;
     }
@@ -138,5 +141,13 @@ public class Store {
 
     public void setEvaluation(String evaluation) {
         this.evaluation = evaluation;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

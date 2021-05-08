@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/d_240"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/d_02"
+    android:background="@drawable/ui_shape_corner_16dp_white_with_orange_border">
+
+    <EditText
+        android:id="@+id/category_et"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_36"
+        android:background="@drawable/ui_shape_corner_8dp_white_with_grey_border"
+        android:paddingVertical="@dimen/d_04"
+        android:paddingHorizontal="@dimen/d_08"
+        android:layout_margin="@dimen/d_08"
+        android:textSize="@dimen/s_16"
+        android:maxLength="8"
+        android:hint="输入商品分类..."/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/yes_tv"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/d_08"
+            android:gravity="center"
+            android:textSize="@dimen/s_16"
+            android:textColor="@color/black"
+            android:background="@drawable/ui_btn_top_right_border"
+            android:text="确定"/>
+
+        <TextView
+            android:id="@+id/no_tv"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/d_08"
+            android:gravity="center"
+            android:textSize="@dimen/s_16"
+            android:textColor="@color/black"
+            android:background="@drawable/ui_btn_top_border"
+            android:text="取消"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -51,7 +51,7 @@ public class UserFragment extends BaseFragment<FragmentUserBinding> implements V
         int id = v.getId();
         //注销
         if (id == R.id.user_exit_ll) {
-            logOut(v);
+            logOut();
         }
         //我的收货地址
         else if (id == R.id.user_address_ll) {
@@ -67,12 +67,10 @@ public class UserFragment extends BaseFragment<FragmentUserBinding> implements V
 
     //---------------------------- < > ---------------------------------
 
-    private void logOut(View v) {
+    private void logOut() {
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString("user", null);
         edit.apply();
         EventBus.getDefault().post(EmptyMessage.getInstance(EmptyMessage.STATE_LOGOUT));
-        NavController navController = Navigation.findNavController(v);
-        navController.navigate(R.id.action_navigation_user_to_navigation_home);
     }
 }

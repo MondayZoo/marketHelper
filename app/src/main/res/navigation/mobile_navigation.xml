@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -28,11 +28,11 @@
         android:name="com.month.markethelper.fragment.user.UserFragment"
         android:label="@string/title_user"
         tools:layout="@layout/fragment_user" >
-        <action
-            android:id="@+id/action_navigation_user_to_navigation_home"
-            app:destination="@id/navigation_home"
-            app:enterAnim="@anim/slide_from_left"
-            app:exitAnim="@anim/slide_to_right" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_management"
+        android:name="com.month.markethelper.fragment.management.ManagementFragment"
+        android:label="@string/title_management" />
 
 </navigation>
