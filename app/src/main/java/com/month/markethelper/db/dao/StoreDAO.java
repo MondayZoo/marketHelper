@@ -61,5 +61,14 @@ public interface StoreDAO {
      * 查询店铺商品分类
      */
     @Query("SELECT category FROM store WHERE id = :storeId")
-    LiveData<String> getCategory(long storeId);
+    LiveData<String> getCategoryLived(long storeId);
+
+    @Query("SELECT category FROM store WHERE id = :storeId")
+    String getCategory(long storeId);
+
+    /**
+     * 查询店铺名
+     */
+    @Query("SELECT store_name FROM Store WHERE id = :storeId")
+    String getStoreName(long storeId);
 }

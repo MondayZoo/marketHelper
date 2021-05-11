@@ -65,8 +65,8 @@ public class TextFlowLayout extends ViewGroup {
     public void setTextList(List<String> textList) {
         removeAllViews();
         this.mTextList = textList;
-        //反转内容，确保最新的历史记录在最前面
-//        Collections.reverse(mTextList);
+        //反转内容，确保最新的记录在最前面
+        //Collections.reverse(mTextList);
         //遍历内容
         for (int i = 0; i < mTextList.size(); i++) {
             //添加子View
@@ -74,22 +74,25 @@ public class TextFlowLayout extends ViewGroup {
             final int index = i;
             LinearLayout item = (LinearLayout) LayoutInflater.from(getContext()).inflate(R.layout.item_goods_category, this, false);
             TextView textView = item.findViewById(R.id.category_tv);
+            TextView deleteTv = item.findViewById(R.id.category_delete_tv);
             textView.setText(text);
-            textView.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mItemClickListener != null) {
-                        mItemClickListener.onFlowTextItemClick(index, text);
-                    }
+            //点击事件
+            textView.setOnClickListener(v -> {
+                if (mItemClickListener != null) {
+                    mItemClickListener.onFlowTextItemClick(index, text);
                 }
             });
-            textView.setOnLongClickListener(new OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    if (mItemClickListener != null) {
-                        mItemClickListener.onFlowTextItemLongChick(index, text);
-                    }
-                    return true;
+            //长按事件
+            textView.setOnLongClickListener(v -> {
+                if (mItemClickListener != null) {
+                    mItemClickListener.onFlowTextItemLongChick(index, text);
+                }
+                return true;
+            });
+            //删除事件
+            deleteTv.setOnClickListener(v -> {
+                if (mItemClickListener != null) {
+                    mItemClickListener.onFlowTextItemDelete(index);
                 }
             });
             this.addView(item);
@@ -188,8 +191,44 @@ public class TextFlowLayout extends ViewGroup {
         return mTextList.size();
     }
 
+    /**
+     * 显示/隐藏Item的删除按钮
+     */
+    public void showItemDeleteBtn() {
+        for (int i = 0; i < getChildCount(); i++) {
+            getChildAt(i).findViewById(R.id.category_delete_tv).setVisibility(VISIBLE);
+        }
+    }
+
+    public void hideItemDeleteBtn() {
+        for (int i = 0; i < getChildCount(); i++) {
+            getChildAt(i).findViewById(R.id.category_delete_tv).setVisibility(GONE);
+        }
+    }
+
+    /**
+     * 隐藏某个Item
+     * @param index
+     */
+    public void hideItem(int index) {
+        getChildAt(index).setVisibility(GONE);
+    }
+
+    /**
+     * 显示所有的Item
+     */
+    public void showAllItem() {
+        for (int i = 0; i < getChildCount(); i++) {
+            getChildAt(i).setVisibility(VISIBLE);
+        }
+    }
+
+    /**
+     * 事件监听接口
+     */
     public interface OnFlowTextItemClickListener {
         void onFlowTextItemClick(int index, String text);
         void onFlowTextItemLongChick(int index, String text);
+        void onFlowTextItemDelete(int index);
     }
 }

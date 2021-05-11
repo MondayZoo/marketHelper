@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/d_120"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingVertical="@dimen/d_10">
+
+    <ImageView
+        android:id="@+id/goods_pic_iv"
+        android:layout_width="@dimen/d_100"
+        android:layout_height="@dimen/d_100"
+        android:layout_marginEnd="@dimen/d_10"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/goods_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/goods_pic_iv"
+        android:layout_marginBottom="@dimen/d_04"
+        style="@style/text_bold_black_style"
+        android:textSize="@dimen/s_16"
+        tools:text="康师傅红烧牛肉面优惠装"/>
+
+    <TextView
+        android:id="@+id/goods_intro_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/goods_pic_iv"
+        android:layout_below="@id/goods_name_tv"
+        android:textSize="@dimen/s_14"
+        tools:text="红烧牛肉面没有牛肉是很正常的事。图片仅供参考，请以实物为准。"/>
+
+    <TextView
+        android:id="@+id/goods_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/goods_pic_iv"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/s_14"
+        android:textStyle="bold"
+        android:textColor="@color/color_D10D0B"
+        tools:text="4元/桶"/>
+
+    <TextView
+        android:id="@+id/goods_buy_tv"
+        android:layout_width="@dimen/d_20"
+        android:layout_height="@dimen/d_20"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/ic_add"/>
+
+</RelativeLayout>

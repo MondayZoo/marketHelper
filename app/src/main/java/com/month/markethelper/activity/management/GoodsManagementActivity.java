@@ -1,28 +1,38 @@
 package com.month.markethelper.activity.management;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
-import android.os.Bundle;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.chad.library.adapter.base.listener.GridSpanSizeLookup;
 import com.month.markethelper.R;
-import com.month.markethelper.adapter.GoodsCategoryAdapter;
+import com.month.markethelper.adapter.SimpleGoodsAdapter;
 import com.month.markethelper.base.BaseActivityWithViewModel;
+import com.month.markethelper.bean.SimpleGoodsBean;
 import com.month.markethelper.custom.TextFlowLayout;
 import com.month.markethelper.databinding.ActivityGoodsManagementBinding;
+import com.month.markethelper.db.entity.Goods;
 import com.month.markethelper.db.entity.Store;
 import com.month.markethelper.utils.DialogUtils;
 import com.month.markethelper.utils.ToastUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityGoodsManagementBinding> implements View.OnClickListener, TextFlowLayout.OnFlowTextItemClickListener {
 
@@ -36,7 +46,16 @@ public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityG
     private Dialog dialog;
     private int categoryIndex = -1;
 
-    private TextFlowLayout categoryList;
+    //流式布局展示分类
+    private TextFlowLayout textFlowLayout;
+    private List<Integer> mark = new ArrayList<>();
+
+    //商品列表
+    private List<SimpleGoodsBean> multipleData = new ArrayList<>();
+
+    //分类操作模式。
+    //默认为展示模式，为true时为删除模式
+    private boolean opModel;
 
     //-------------------------------------Basal Method----------------------------------
 
@@ -60,17 +79,17 @@ public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityG
 
         //☆ 分类管理
         //初始化流式布局
-        categoryList = binding.categoryList;
-        categoryList.setItemVerticalSpace(20);
-        categoryList.setItemHorizontalSpace(20);
-        categoryList.setOnFlowTextItemClickListener(this);
+        textFlowLayout = binding.categoryList;
+        textFlowLayout.setItemVerticalSpace(20);
+        textFlowLayout.setItemHorizontalSpace(20);
+        textFlowLayout.setOnFlowTextItemClickListener(this);
         //设置数据
         viewModel.getCategory(storeId).observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 if (!TextUtils.isEmpty(s)) {
-                    String[] category = s.split(";");
-                    categoryList.setTextList(Arrays.asList(category));
+                    String[] categories = s.split(";");
+                    textFlowLayout.setTextList(Arrays.asList(categories));
                 }
             }
         });
@@ -79,12 +98,46 @@ public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityG
         //初始化RecyclerView
         RecyclerView contentRv = binding.contentRv;
         contentRv.setLayoutManager(new GridLayoutManager(this, 2));
-
+        //初始化适配器
+        SimpleGoodsAdapter simpleGoodsAdapter = new SimpleGoodsAdapter(this);
+        simpleGoodsAdapter.setGridSpanSizeLookup(new GridSpanSizeLookup() {
+            @Override
+            public int getSpanSize(@NonNull GridLayoutManager gridLayoutManager, int viewType, int position) {
+                return multipleData.get(position).getSpanSize();
+            }
+        });
+        //设置数据
+        viewModel.getGoods(storeId).observe(this, new Observer<List<Goods>>() {
+            @Override
+            public void onChanged(List<Goods> goodsList) {
+                multipleData.clear();
+                //对商品进行分类
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    SimpleGoodsBean bean;
+                    Map<String, List<Goods>> collect = goodsList.stream().collect(Collectors.groupingBy(Goods::getType));
+                    for (Map.Entry<String, List<Goods>> entry : collect.entrySet()) {
+                        bean = new SimpleGoodsBean(entry.getKey());
+                        multipleData.add(bean);
+                        for (Goods goods : entry.getValue()) {
+                            bean = new SimpleGoodsBean(goods);
+                            multipleData.add(bean);
+                        }
+                    }
+                }
+                simpleGoodsAdapter.setList(multipleData);
+            }
+        });
+        //设置适配器
+        contentRv.setAdapter(simpleGoodsAdapter);
     }
 
     @Override
     protected void initEvent() {
         binding.categoryAddTv.setOnClickListener(this);
+        binding.categoryDeleteTv.setOnClickListener(this);
+        binding.categoryConfirmTv.setOnClickListener(this);
+        binding.categoryCancelTv.setOnClickListener(this);
+        binding.contentIconTv.setOnClickListener(this);
     }
 
     @Override
@@ -105,7 +158,24 @@ public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityG
         }
         //删除分类
         else if (id == R.id.category_delete_tv) {
-
+            switchOpMode();
+            mark.clear();
+        }
+        //确认删除
+        else if (id == R.id.category_confirm_tv) {
+            switchOpMode();
+            deleteCategory();
+        }
+        //取消删除
+        else if (id == R.id.category_cancel_tv) {
+            switchOpMode();
+            textFlowLayout.showAllItem();
+        }
+        //新增商品
+        else if (id == R.id.content_icon_tv) {
+            Intent intent = new Intent(this, GoodsInfoActivity.class);
+            intent.putExtra("state", 1);
+            startActivity(intent);
         }
     }
 
@@ -118,6 +188,12 @@ public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityG
     public void onFlowTextItemLongChick(int index, String text) {
         categoryIndex = index;
         showDialog(text);
+    }
+
+    @Override
+    public void onFlowTextItemDelete(int index) {
+        textFlowLayout.hideItem(index);
+        mark.add(index);
     }
 
     //-------------------------------------Click Event Method----------------------------------
@@ -151,11 +227,11 @@ public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityG
         }
         //更新原有分类
         else {
-            String[] category = store.getCategory().split(";");
+            String[] categories = store.getCategory().split(";");
             String newCategory = editText.getText().toString();
-            category[categoryIndex] = TextUtils.isEmpty(newCategory) ? category[categoryIndex] : newCategory;
+            categories[categoryIndex] = TextUtils.isEmpty(newCategory) ? categories[categoryIndex] : newCategory;
             StringBuilder sb = new StringBuilder();
-            for (String s : category) {
+            for (String s : categories) {
                 sb.append(s);
                 sb.append(";");
             }
@@ -166,4 +242,41 @@ public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityG
         dialog.dismiss();
     }
 
+    private void deleteCategory() {
+        Store store = viewModel.getStoreInfo(storeId);
+        String[] categories = store.getCategory().split(";");
+        for (Integer index : mark) {
+            categories[index] = "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (String category : categories) {
+            if (!TextUtils.isEmpty(category)) {
+                sb.append(category);
+                sb.append(";");
+            }
+        }
+        store.setCategory(sb.toString());
+        viewModel.updateCategory(store);
+    }
+
+    /**
+     *  切换操作模式 -- 展示模式 / 删除模式
+     */
+    private void switchOpMode() {
+        opModel = !opModel;
+        //删除模式
+        if (opModel) {
+            binding.categoryCancelTv.setVisibility(View.VISIBLE);
+            binding.categoryConfirmTv.setVisibility(View.VISIBLE);
+            binding.categoryAddTv.setVisibility(View.GONE);
+            binding.categoryDeleteTv.setVisibility(View.GONE);
+            textFlowLayout.showItemDeleteBtn();
+        } else {
+            binding.categoryCancelTv.setVisibility(View.GONE);
+            binding.categoryConfirmTv.setVisibility(View.GONE);
+            binding.categoryAddTv.setVisibility(View.VISIBLE);
+            binding.categoryDeleteTv.setVisibility(View.VISIBLE);
+            textFlowLayout.hideItemDeleteBtn();
+        }
+    }
 }

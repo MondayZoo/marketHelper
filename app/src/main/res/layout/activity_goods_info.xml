@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.month.markethelper.activity.management.GoodsInfoViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".activity.management.GoodsInfoActivity"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/actionbar_rl"
+            layout="@layout/actionbar_layout" />
+
+        <LinearLayout
+            android:id="@+id/store_form_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_50"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_gray_16sp_style"
+                    android:text="商品名："/>
+
+                <EditText
+                    android:id="@+id/goods_name_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_black_16sp_style"
+                    android:hint="请填写商品名"
+                    android:text="@={vm.goodsName}"
+                    android:background="@null"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_50"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_gray_16sp_style"
+                    android:text="商品介绍："/>
+
+                <EditText
+                    android:id="@+id/goods_intro_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_black_16sp_style"
+                    android:hint="简单介绍一下商品吧~"
+                    android:text="@={vm.goodsIntro}"
+                    android:background="@null"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_50"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_gray_16sp_style"
+                    android:text="商品单价："/>
+
+                <EditText
+                    android:id="@+id/goods_price_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    android:inputType="numberDecimal"
+                    style="@style/text_black_16sp_style"
+                    android:hint="请填写商品的单价"
+                    android:text="@={vm.goodsPrice}"
+                    android:background="@null"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_50"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginTop="@dimen/d_15"
+                    style="@style/text_gray_16sp_style"
+                    android:text="商品单位："/>
+
+                <EditText
+                    android:id="@+id/goods_unit_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_black_16sp_style"
+                    android:hint="例：包/箱/瓶等"
+                    android:text="@={vm.goodsUnit}"
+                    android:background="@null"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_50"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginTop="@dimen/d_15"
+                    style="@style/text_gray_16sp_style"
+                    android:text="商品分类："/>
+
+                <TextView
+                    android:id="@+id/goods_type_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_black_16sp_style"
+                    android:hint="点击选择"
+                    android:text="@={vm.goodsType}"
+                    android:background="@null"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_50"
+                android:paddingHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_underline">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginTop="@dimen/d_15"
+                    style="@style/text_gray_16sp_style"
+                    android:text="商品图片："/>
+
+                <TextView
+                    android:id="@+id/goods_pic_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_black_16sp_style"
+                    android:hint="点击添加图片"
+                    android:background="@null"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/goods_pic_iv"
+                android:layout_width="@dimen/d_160"
+                android:layout_height="@dimen/d_160"
+                android:layout_marginTop="@dimen/d_10"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/goods_save_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginVertical="@dimen/d_10"
+                android:layout_marginHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_corner_8dp_red"
+                android:gravity="center"
+                style="@style/text_black_16sp_style"
+                android:text="保存"/>
+
+            <TextView
+                android:id="@+id/goods_delete_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginHorizontal="@dimen/d_10"
+                android:background="@drawable/ui_shape_corner_8dp_red_border"
+                android:gravity="center"
+                style="@style/text_black_16sp_style"
+                android:visibility="gone"
+                android:text="删除"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

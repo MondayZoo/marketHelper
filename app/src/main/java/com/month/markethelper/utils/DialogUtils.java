@@ -1,5 +1,6 @@
 package com.month.markethelper.utils;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Gravity;
@@ -8,11 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.month.markethelper.R;
 import com.month.markethelper.base.BaseApplication;
+
+import java.util.List;
 
 public class DialogUtils {
 
@@ -82,13 +89,61 @@ public class DialogUtils {
     }
 
     /**
-     * 关闭dialog
-     * @param mDialogUtils
+     * 创建图片选择对话框
+     * @param context
+     * @return
      */
-    public static void closeDialog(Dialog mDialogUtils) {
-        if (mDialogUtils != null && mDialogUtils.isShowing()) {
-            mDialogUtils.dismiss();
-        }
+    public static Dialog createPictureChoiceDialog(Context context) {
+        Dialog dialog = new Dialog(context, R.style.CustomDialogTheme);
+        dialog.setContentView(R.layout.dialog_picture_choice);
+
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        return dialog;
     }
 
+    /**
+     * 条件选择器初始化，自定义布局
+     */
+    private static OptionsPickerView pvCustomOptions;
+    public static <T>OptionsPickerView initCustomOptionPicker(Context mContext, List<T> data, OnOptionsSelectListener onOptionsSelectListener) {
+        /*
+         * @description
+         *
+         * 注意事项：
+         * 自定义布局中，id为 optionspicker 或者 timepicker 的布局以及其子控件必须要有，否则会报空指针。
+         * 具体可参考demo 里面的两个自定义layout布局。
+         */
+        pvCustomOptions = new OptionsPickerBuilder(mContext, (options1, option2, options3, v) -> {
+            //返回的分别是三个级别的选中位置
+            onOptionsSelectListener.onOptionsSelectListener(options1,option2,options3);
+        })
+                .setLayoutRes(R.layout.pickerview_custom_options, v -> {
+                    TextView pickerTitle = v.findViewById(R.id.tvTitle);
+                    TextView tvSubmit = v.findViewById(R.id.tv_finish);
+                    ImageView ivCancel = v.findViewById(R.id.iv_cancel);
+                    pickerTitle.setText("选择分类");
+                    tvSubmit.setOnClickListener(v1 -> {
+                        pvCustomOptions.returnData();
+                        pvCustomOptions.dismiss();
+                    });
+                    ivCancel.setOnClickListener(v12 -> pvCustomOptions.dismiss());
+                })
+                .setContentTextSize(18)
+                .setDividerColor(mContext.getResources().getColor(R.color.white))            //分割线的颜色
+                .setTextColorCenter(mContext.getResources().getColor(R.color.color_D0021B))  //选中文本的颜色
+                .setLineSpacingMultiplier(2.0f)
+                .isAlphaGradient(true)
+                .setDecorView((ViewGroup) ((Activity) mContext).getWindow().getDecorView().findViewById(android.R.id.content))
+                .build();
+
+        pvCustomOptions.setPicker(data);//添加数据
+        return pvCustomOptions;
+    }
+
+    public interface OnOptionsSelectListener {
+        void onOptionsSelectListener(int options1,int option2,int options3);
+    }
 }

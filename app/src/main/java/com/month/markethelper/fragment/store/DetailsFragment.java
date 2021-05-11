@@ -102,6 +102,7 @@ public class DetailsFragment extends BaseFragment<FragmentStoreDetialsBinding> i
                 }
             }
         }
+
         Intent intent = new Intent(Intent.ACTION_DIAL);
         Uri data = Uri.parse("tel:" + phoneNum);
         intent.setData(data);

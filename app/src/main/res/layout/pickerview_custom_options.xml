@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/d_310"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/ui_shape_top_corner_16dp_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_cancel"
+            android:layout_width="@dimen/d_15"
+            android:layout_height="@dimen/d_15"
+            android:layout_marginEnd="@dimen/d_23"
+            android:layout_marginTop="@dimen/d_20"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_x"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="23dp"
+            android:textColor="@color/color_333333"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            tool:text="选择分类"/>
+
+    </RelativeLayout>
+
+    <!--此部分需要完整复制过去，删减或者更改ID会导致初始化找不到内容而报空-->
+    <LinearLayout
+        android:id="@+id/optionspicker"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:minHeight="150dp"
+        android:gravity="center"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/options1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/options2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.contrarywind.view.WheelView
+            android:id="@+id/options3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/tv_finish"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_41"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/d_08"
+        android:layout_marginBottom="@dimen/d_16"
+        android:background="@drawable/ui_shape_corner_20dp_red"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</LinearLayout>

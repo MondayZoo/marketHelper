@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/color_E3E3E3"
+    android:padding="1dp">
+
+    <TextView
+        android:id="@+id/camera_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_50"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/s_16"
+        android:background="@color/white"
+        android:text="拍照"/>
+
+    <TextView
+        android:id="@+id/album_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_50"
+        android:layout_marginTop="@dimen/d_01"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/s_16"
+        android:background="@color/white"
+        android:text="从相册中选择"/>
+
+</LinearLayout>

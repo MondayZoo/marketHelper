@@ -16,11 +16,23 @@ public class Goods {
     @ColumnInfo(name = "store_name")
     private String storeName;
 
+    //商品名
     private String name;
 
+    //商品图片url
+    private String url;
+
+    //商品介绍
     private String intro;
 
+    //商品类型
+    private String type;
+
+    //商品单价
     private double price;
+
+    //商品单位
+    private String unit;
 
     public long getId() {
         return id;
@@ -68,5 +80,29 @@ public class Goods {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -14,10 +14,10 @@
         android:layout_height="match_parent"
         tools:context=".activity.management.GoodsManagementActivity"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/d_40"
-        >
+        android:layout_marginTop="@dimen/d_40">
 
         <TextView
+            android:id="@+id/category_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/d_08"
@@ -33,7 +33,17 @@
             android:layout_toStartOf="@id/category_delete_tv"
             android:layout_marginEnd="@dimen/d_08"
             android:layout_marginTop="@dimen/d_02"
-            android:background="@drawable/ic_add"/>
+            android:background="@drawable/ic_add" />
+
+        <TextView
+            android:id="@+id/category_confirm_tv"
+            android:layout_width="@dimen/d_24"
+            android:layout_height="@dimen/d_24"
+            android:layout_toStartOf="@id/category_cancel_tv"
+            android:layout_marginEnd="@dimen/d_08"
+            android:layout_marginTop="@dimen/d_02"
+            android:background="@drawable/ic_op_confirm"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/category_delete_tv"
@@ -42,13 +52,23 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/d_08"
             android:layout_marginTop="@dimen/d_02"
-            android:background="@drawable/ic_delete"/>
+            android:background="@drawable/ic_delete" />
+
+        <TextView
+            android:id="@+id/category_cancel_tv"
+            android:layout_width="@dimen/d_24"
+            android:layout_height="@dimen/d_24"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/d_08"
+            android:layout_marginTop="@dimen/d_02"
+            android:background="@drawable/ic_op_cancel"
+            android:visibility="gone"/>
 
         <com.month.markethelper.custom.TextFlowLayout
             android:id="@+id/category_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/category_add_tv"
+            android:layout_below="@id/category_tv"
             android:layout_marginBottom="@dimen/d_08" />
 
         <TextView
@@ -69,6 +89,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/d_08"
             android:layout_marginTop="@dimen/d_04"
+            android:layout_marginBottom="@dimen/d_08"
             android:background="@drawable/ic_category_management"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -76,7 +97,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/content_icon_tv"
-            android:padding="@dimen/d_04"/>
+            android:paddingTop="@dimen/d_10"
+            android:paddingHorizontal="@dimen/d_16"
+            android:background="@color/color_EEEEEE"/>
 
     </RelativeLayout>
 

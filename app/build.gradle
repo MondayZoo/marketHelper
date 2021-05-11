@@ -62,4 +62,6 @@ dependencies {
     implementation 'com.amap.api:map2d:latest.integration'
     //EventBus
     implementation 'org.greenrobot:eventbus:3.1.1'
+    //PickerView
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'
 }

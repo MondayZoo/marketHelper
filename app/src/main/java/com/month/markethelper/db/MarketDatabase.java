@@ -23,7 +23,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 @Database(entities = {User.class, Store.class, Goods.class, Deal.class, Funding.class, AddressInfo.class, Comment.class}, version = 1, exportSchema = false)
-public abstract class MarketDatabase extends RoomDatabase {
+public abstract class   MarketDatabase extends RoomDatabase {
 
     private volatile static MarketDatabase INSTANCE;
 
