@@ -23,4 +23,11 @@ public interface GoodsDAO {
     @Query("SELECT * FROM GOODS WHERE store_id = :storeId")
     LiveData<List<Goods>> findAllGoodsByStoreId(long storeId);
 
+    /**
+     * 根据商品id获取商品信息
+     * @param goodsId   商品id
+     * @return  商品信息
+     */
+    @Query("SELECT * FROM GOODS WHERE id = :goodsId")
+    Goods findGoodsById(long goodsId);
 }

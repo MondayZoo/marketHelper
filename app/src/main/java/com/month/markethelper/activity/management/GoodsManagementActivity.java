@@ -17,7 +17,7 @@ import com.chad.library.adapter.base.listener.GridSpanSizeLookup;
 import com.month.markethelper.R;
 import com.month.markethelper.adapter.SimpleGoodsAdapter;
 import com.month.markethelper.base.BaseActivityWithViewModel;
-import com.month.markethelper.bean.SimpleGoodsBean;
+import com.month.markethelper.bean.GoodsAndTypeBean;
 import com.month.markethelper.custom.TextFlowLayout;
 import com.month.markethelper.databinding.ActivityGoodsManagementBinding;
 import com.month.markethelper.db.entity.Goods;
@@ -27,11 +27,8 @@ import com.month.markethelper.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityGoodsManagementBinding> implements View.OnClickListener, TextFlowLayout.OnFlowTextItemClickListener {
@@ -51,11 +48,11 @@ public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityG
     private List<Integer> mark = new ArrayList<>();
 
     //商品列表
-    private List<SimpleGoodsBean> multipleData = new ArrayList<>();
+    private List<GoodsAndTypeBean> multipleData = new ArrayList<>();
 
     //分类操作模式。
     //默认为展示模式，为true时为删除模式
-    private boolean opModel;
+    private boolean opMode;
 
     //-------------------------------------Basal Method----------------------------------
 
@@ -113,13 +110,13 @@ public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityG
                 multipleData.clear();
                 //对商品进行分类
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                    SimpleGoodsBean bean;
+                    GoodsAndTypeBean bean;
                     Map<String, List<Goods>> collect = goodsList.stream().collect(Collectors.groupingBy(Goods::getType));
                     for (Map.Entry<String, List<Goods>> entry : collect.entrySet()) {
-                        bean = new SimpleGoodsBean(entry.getKey());
+                        bean = new GoodsAndTypeBean(entry.getKey());
                         multipleData.add(bean);
                         for (Goods goods : entry.getValue()) {
-                            bean = new SimpleGoodsBean(goods);
+                            bean = new GoodsAndTypeBean(goods, entry.getKey());
                             multipleData.add(bean);
                         }
                     }
@@ -263,9 +260,9 @@ public class GoodsManagementActivity extends BaseActivityWithViewModel<ActivityG
      *  切换操作模式 -- 展示模式 / 删除模式
      */
     private void switchOpMode() {
-        opModel = !opModel;
+        opMode = !opMode;
         //删除模式
-        if (opModel) {
+        if (opMode) {
             binding.categoryCancelTv.setVisibility(View.VISIBLE);
             binding.categoryConfirmTv.setVisibility(View.VISIBLE);
             binding.categoryAddTv.setVisibility(View.GONE);

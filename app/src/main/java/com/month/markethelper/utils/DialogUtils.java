@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
@@ -146,4 +147,21 @@ public class DialogUtils {
     public interface OnOptionsSelectListener {
         void onOptionsSelectListener(int options1,int option2,int options3);
     }
+
+    /**
+     * 创建购物袋对话框
+     * @param context
+     * @return
+     */
+    public static Dialog createShoppingBagDialog(Context context) {
+        Dialog dialog = new Dialog(context, R.style.CustomDialogTheme);
+        dialog.setContentView(R.layout.dialog_shopping_bag);
+
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        return dialog;
+    }
+
 }

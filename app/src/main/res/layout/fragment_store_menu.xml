@@ -9,27 +9,91 @@
             type="com.month.markethelper.fragment.store.MenuViewModel" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/menu_rl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:background="@color/color_F8F8F8"
-        android:layout_below="@id/search_ll">
+        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/left_category_list"
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:background="@color/color_F8F8F8"
-            android:overScrollMode="never" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/right_content_list"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:paddingHorizontal="@dimen/d_10"
-            android:overScrollMode="never" />
+            android:orientation="horizontal"
+            android:background="@color/color_F8F8F8">
 
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/left_category_list"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_F8F8F8"
+                android:overScrollMode="never" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/right_content_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:paddingHorizontal="@dimen/d_10"
+                android:paddingBottom="@dimen/d_80"
+                android:overScrollMode="never" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/shopping_bag_rl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_60"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/d_10"
+            android:layout_marginBottom="@dimen/d_10"
+            android:background="@drawable/ui_shape_corner_30dp_black">
+
+            <TextView
+                android:id="@+id/shopping_details_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/d_95"
+                android:layout_marginEnd="@dimen/d_10"
+                android:textSize="@dimen/s_18"
+                android:textColor="@color/white"
+                tools:text="￥10.0"/>
+
+            <TextView
+                android:id="@+id/shopping_submit_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/d_20"
+                android:textSize="@dimen/s_16"
+                android:textStyle="bold"
+                android:textColor="@color/ui_submit_btn_text_color_selector"
+                android:background="@drawable/ui_selector_submit_btn_bg"
+                android:text="结算"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/shopping_bag_tv"
+            android:layout_width="@dimen/d_60"
+            android:layout_height="@dimen/d_80"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/d_30"
+            android:layout_marginBottom="@dimen/d_10"
+            android:background="@drawable/pic_shopping_bag"/>
+
+        <TextView
+            android:id="@+id/shopping_count_tv"
+            android:layout_width="@dimen/d_20"
+            android:layout_height="@dimen/d_20"
+            android:layout_alignTop="@id/shopping_bag_tv"
+            android:layout_marginTop="@dimen/d_16"
+            android:layout_marginStart="@dimen/d_75"
+            android:textColor="@color/white"
+            style="@style/text_bold_black_style"
+            android:gravity="center"
+            android:background="@drawable/ui_shape_corner_10dp_red"/>
+
+    </RelativeLayout>
+
 </layout>

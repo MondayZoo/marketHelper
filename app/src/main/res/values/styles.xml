@@ -30,6 +30,8 @@
         <item name="android:background">@android:color/transparent</item>
         <!-- 背景透明 -->
         <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 禁用动画 -->
+        <item name="android:windowAnimationStyle">@null</item>
         <!-- 模糊 -->
         <item name="android:backgroundDimEnabled">true</item>
         <!-- 遮罩层 -->
