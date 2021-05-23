@@ -3,6 +3,7 @@ package com.month.markethelper.fragment.store;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.os.Build;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.month.markethelper.R;
+import com.month.markethelper.activity.OrderActivity;
 import com.month.markethelper.adapter.GoodsInBagAdapter;
 import com.month.markethelper.adapter.GoodsInMenuAdapter;
 import com.month.markethelper.adapter.LeftCategoryListAdapter;
@@ -28,6 +30,7 @@ import com.month.markethelper.databinding.FragmentStoreMenuBinding;
 import com.month.markethelper.db.entity.Goods;
 import com.month.markethelper.utils.DialogUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -121,6 +124,7 @@ public class MenuFragment extends BaseFragment<FragmentStoreMenuBinding> impleme
         });
         //购物袋详情
         binding.shoppingBagRl.setOnClickListener(this);
+        binding.shoppingSubmitTv.setOnClickListener(this);
     }
 
     @Override
@@ -144,6 +148,13 @@ public class MenuFragment extends BaseFragment<FragmentStoreMenuBinding> impleme
         else if (id == R.id.dismiss_view || id == R.id.shopping_bag_rl2) {
             binding.shoppingDetailsTv.setText(totalPrice == 0 ? "空空如也~" : "￥" + totalPrice);
             dialog.dismiss();
+        }
+        //结账
+        else if (id == R.id.shopping_submit_tv) {
+            Intent intent = new Intent(getActivity(), OrderActivity.class);
+            intent.putExtra("storeName", viewModel.getStoreName());
+            intent.putExtra("orderMap", (Serializable) orderMap);
+            startActivity(intent);
         }
     }
 

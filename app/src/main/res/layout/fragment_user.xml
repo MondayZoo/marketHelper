@@ -108,7 +108,7 @@
                     android:layout_marginTop="@dimen/d_04"
                     android:layout_gravity="center_horizontal"
                     android:textSize="@dimen/s_18"
-                    android:text="17.30元" />
+                    android:text="0.00元" />
 
             </LinearLayout>
 
@@ -144,7 +144,7 @@
                     android:layout_gravity="center_horizontal"
                     android:textSize="@dimen/s_18"
                     style="@style/text_bold_black_style"
-                    android:text="0.30元" />
+                    android:text="0.00元" />
 
             </LinearLayout>
 

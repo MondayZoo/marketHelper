@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.month.markethelper.activity.vm.OrderViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".activity.OrderActivity"
+        android:background="@color/color_f5f5f5">
+
+        <include
+            android:id="@+id/actionbar_rl"
+            layout="@layout/actionbar_layout2"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_160"
+            android:layout_below="@id/actionbar_rl"
+            android:background="@drawable/ui_shape_red_to_white"/>
+
+        <LinearLayout
+            android:id="@+id/deliver_from_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10"
+            android:layout_marginHorizontal="@dimen/d_16"
+            android:padding="@dimen/d_16"
+            android:layout_below="@id/actionbar_rl"
+            android:background="@drawable/ui_shape_corner_16dp_white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/add_tv"
+                    android:layout_width="@dimen/d_26"
+                    android:layout_height="@dimen/d_26"
+                    android:layout_marginEnd="@dimen/d_04"
+                    android:background="@drawable/ic_add2" />
+
+                <TextView
+                    android:id="@+id/address_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_FF9000"
+                    android:textSize="@dimen/s_20"
+                    android:layout_toEndOf="@id/add_tv"
+                    android:text="确认收货地址"/>
+
+                <TextView
+                    android:id="@+id/contacts_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_06"
+                    android:layout_below="@id/address_tv"
+                    tools:text="李 先生  18058710509"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_20"
+                android:layout_marginTop="@dimen/d_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/text_bold_black_style"
+                    android:text="送达时间"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_FF9000"
+                    android:layout_alignParentEnd="true"
+                    android:text="立即送达"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/d_16"
+            android:layout_marginTop="@dimen/d_10"
+            android:layout_below="@id/deliver_from_rl"
+            android:background="@drawable/ui_shape_corner_16dp_white"
+            android:padding="@dimen/d_10"
+            android:layout_marginBottom="@dimen/d_80">
+
+            <TextView
+                android:id="@+id/store_name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ui_shape_underline"
+                android:paddingTop="@dimen/d_02"
+                android:paddingBottom="@dimen/d_12"
+                android:textColor="@color/black"
+                tools:text="好多肉汉堡"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/goods_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_10"
+                android:layout_below="@id/store_name_tv"
+                android:layout_above="@id/order_price_rl"/>
+
+            <RelativeLayout
+                android:id="@+id/order_price_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ui_shape_headline"
+                android:paddingVertical="@dimen/d_08"
+                android:layout_marginTop="@dimen/d_10"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/price_symbol_tv"
+                    android:layout_alignBaseline="@id/total_price_tv"
+                    android:textColor="@color/black"
+                    android:text="总计"/>
+
+                <TextView
+                    android:id="@+id/price_symbol_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@id/total_price_tv"
+                    android:layout_alignBaseline="@id/total_price_tv"
+                    style="@style/text_bold_black_style"
+                    android:text="￥"/>
+
+                <TextView
+                    android:id="@+id/total_price_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="@dimen/s_20"
+                    style="@style/text_bold_black_style"
+                    android:text="@{String.valueOf(vm.totalPrice)}"
+                    tools:text="16"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/order_rl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_60"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/d_10"
+            android:layout_marginBottom="@dimen/d_10"
+            android:background="@drawable/ui_shape_corner_30dp_black">
+
+            <TextView
+                android:id="@+id/order_price_symbol_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignBaseline="@id/order_price_tv"
+                android:layout_marginStart="@dimen/d_16"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="￥"/>
+
+            <TextView
+                android:id="@+id/order_price_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/order_price_symbol_tv"
+                android:textSize="@dimen/s_20"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="@{String.valueOf(vm.totalPrice)}"
+                tools:text="10.0"/>
+
+            <TextView
+                android:id="@+id/shopping_submit_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/d_20"
+                android:textSize="@dimen/s_16"
+                android:textStyle="bold"
+                android:textColor="@color/ui_submit_btn_text_color_selector"
+                android:background="@drawable/ui_selector_submit_btn_bg"
+                android:text="提交订单"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

@@ -164,4 +164,26 @@ public class DialogUtils {
         return dialog;
     }
 
+    /**
+     * 创建地址选择对话框
+     * @param context
+     * @return
+     */
+    public static Dialog createChooseAddressDialog(Context context) {
+        Dialog dialog = new Dialog(context, R.style.CustomDialogTheme);
+        dialog.setContentView(R.layout.dialog_choose_address);
+
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        dialog.findViewById(R.id.back_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        return dialog;
+    }
 }

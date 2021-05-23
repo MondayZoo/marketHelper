@@ -86,7 +86,7 @@ public class AddressInfoActivity extends BaseActivityWithViewModel<ActivityAddre
         //RecyclerView
         addressInfoList = binding.addressInfoRv;
         addressInfoList.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new AddressInfoListAdapter(R.layout.item_address_info);
+        adapter = new AddressInfoListAdapter(R.layout.item_address_info, 0);
         addressInfoList.setAdapter(adapter);
     }
 

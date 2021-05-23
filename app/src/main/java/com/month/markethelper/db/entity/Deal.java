@@ -1,4 +1,4 @@
-package com.month.markethelper.db.entity;
+    package com.month.markethelper.db.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
