@@ -152,8 +152,8 @@ public class MenuFragment extends BaseFragment<FragmentStoreMenuBinding> impleme
         //结账
         else if (id == R.id.shopping_submit_tv) {
             Intent intent = new Intent(getActivity(), OrderActivity.class);
-            intent.putExtra("storeName", viewModel.getStoreName());
             intent.putExtra("orderMap", (Serializable) orderMap);
+            intent.putExtra("storeId", viewModel.getStoreId());
             startActivity(intent);
         }
     }

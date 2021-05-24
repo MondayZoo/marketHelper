@@ -60,13 +60,14 @@ public class MenuViewModel extends ViewModel {
         return result;
     }
 
-    public String getStoreName() {
-        return storeDAO.getStoreName(storeId);
-    }
     //--------------------------Getter Method---------------------
 
     public void setStoreId(long storeId) {
         this.storeId = storeId;
+    }
+
+    public long getStoreId() {
+        return storeId;
     }
 
     public MutableLiveData<Integer> getShoppingCount() {

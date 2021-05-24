@@ -90,6 +90,28 @@ public class DialogUtils {
     }
 
     /**
+     * 创建库存对话框
+     * @return  dialog
+     */
+    public static Dialog createInventoryDialog(Context context) {
+        Dialog dialog = new Dialog(context, R.style.CustomDialogTheme);
+        dialog.setContentView(R.layout.dialog_set_inventory);
+
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.CENTER);
+        window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.findViewById(R.id.no_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        return dialog;
+    }
+
+    /**
      * 创建图片选择对话框
      * @param context
      * @return

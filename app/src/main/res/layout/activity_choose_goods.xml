@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.month.markethelper.activity.management.GoodsChoiceViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.management.GoodsChoiceActivity"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d_10"
+            android:text="调货"
+            android:textStyle="bold"
+            android:textSize="@dimen/s_20"
+            android:textColor="@color/color_FF9000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/d_10"
+            android:layout_marginVertical="@dimen/d_04"
+            android:text="商品库存不足时可申请调货，可以从入驻的其他店铺临时调取商品，也可联系其他店铺申请调货事宜。" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d_10"
+            android:text="请选择需要调货的商品"
+            android:textStyle="bold"
+            android:textSize="@dimen/s_16"
+            android:textColor="@color/black" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/goods_choice_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:paddingHorizontal="@dimen/d_10"/>
+
+    </LinearLayout>
+
+</layout>

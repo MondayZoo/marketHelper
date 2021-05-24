@@ -1,11 +1,13 @@
 package com.month.markethelper.db.entity;
 
+import java.io.Serializable;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Goods {
+public class Goods implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private long id;
@@ -33,6 +35,9 @@ public class Goods {
 
     //商品单位
     private String unit;
+
+    //商品库存
+    private int inventory = 0;
 
     public long getId() {
         return id;
@@ -104,5 +109,13 @@ public class Goods {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
     }
 }

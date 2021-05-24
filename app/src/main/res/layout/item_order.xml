@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/ui_shape_corner_8dp_white"
+    android:padding="@dimen/d_10"
+    android:layout_marginBottom="@dimen/d_10">
+
+    <TextView
+        android:id="@+id/store_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_bold_black_style"
+        android:layout_marginBottom="@dimen/d_08"
+        android:textSize="@dimen/s_16"
+        tools:text="深井冰火锅店"/>
+
+    <TextView
+        android:id="@+id/deal_status_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:textColor="#00FF00"
+        tools:text="交易中"/>
+
+    <ImageView
+        android:id="@+id/goods_pic_iv"
+        android:layout_width="@dimen/d_70"
+        android:layout_height="@dimen/d_70"
+        android:layout_below="@id/store_name_tv"
+        android:layout_marginEnd="@dimen/d_05"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/goods_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/store_name_tv"
+        android:layout_toEndOf="@id/goods_pic_iv"
+        tools:text="火锅底料等"/>
+
+    <TextView
+        android:id="@+id/goods_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/store_name_tv"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/black"
+        tools:text="￥200"/>
+
+    <TextView
+        android:id="@+id/goods_count_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/goods_price_tv"
+        android:layout_alignParentEnd="true"
+        tools:text="共10件"/>
+
+    <TextView
+        android:id="@+id/order_confirm_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_toStartOf="@id/order_refuse_tv"
+        android:layout_below="@id/goods_count_tv"
+        android:layout_marginTop="@dimen/d_05"
+        android:background="@drawable/ui_shape_corner_8dp_white_with_grey_border"
+        android:paddingHorizontal="@dimen/d_10"
+        android:paddingVertical="@dimen/d_05"
+        android:text="确认订单" />
+
+    <TextView
+        android:id="@+id/order_refuse_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/goods_count_tv"
+        android:layout_marginTop="@dimen/d_05"
+        android:layout_marginStart="@dimen/d_10"
+        android:background="@drawable/ui_shape_corner_8dp_white_with_grey_border"
+        android:paddingHorizontal="@dimen/d_10"
+        android:paddingVertical="@dimen/d_05"
+        android:text="取消订单" />
+
+</RelativeLayout>

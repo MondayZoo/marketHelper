@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.gyf.immersionbar.ImmersionBar;
+import com.month.markethelper.MainActivity;
 import com.month.markethelper.R;
 import com.month.markethelper.activity.vm.OrderViewModel;
 import com.month.markethelper.adapter.AddressInfoListAdapter;
@@ -42,6 +43,7 @@ public class OrderActivity extends BaseActivityWithViewModel<ActivityOrderBindin
     private String userPhoneNum;
     private AddressInfoListAdapter adapter;
 
+
     //商品列表
     private Map<Long, Integer> orderMap = new HashMap<>();
 
@@ -57,6 +59,7 @@ public class OrderActivity extends BaseActivityWithViewModel<ActivityOrderBindin
         binding.setLifecycleOwner(this);
         userPhoneNum = sharedPreferences.getString("user", null);
         viewModel.setUserPhoneNum(userPhoneNum);
+        viewModel.setStoreId(getIntent().getLongExtra("storeId", 0));
     }
 
     @Override
@@ -94,7 +97,8 @@ public class OrderActivity extends BaseActivityWithViewModel<ActivityOrderBindin
         });
         //商品列表
         orderMap = (Map<Long, Integer>) getIntent().getSerializableExtra("orderMap");
-        binding.storeNameTv.setText(getIntent().getStringExtra("storeName"));
+
+        binding.storeNameTv.setText(viewModel.getStoreName());
         RecyclerView goodsRv = binding.goodsRv;
         goodsRv.setLayoutManager(new LinearLayoutManager(this));
         for (Map.Entry<Long, Integer> entry : orderMap.entrySet()) {
@@ -108,6 +112,7 @@ public class OrderActivity extends BaseActivityWithViewModel<ActivityOrderBindin
     @Override
     protected void initEvent() {
         binding.addressTv.setOnClickListener(this);
+        binding.shoppingSubmitTv.setOnClickListener(this);
         viewModel.getAddressInfoList().observe(this, new Observer<List<AddressInfo>>() {
             @Override
             public void onChanged(List<AddressInfo> addressInfos) {
@@ -126,6 +131,13 @@ public class OrderActivity extends BaseActivityWithViewModel<ActivityOrderBindin
         //确认收货地址
         else if (id == R.id.address_tv) {
             showDialog();
+        }
+        //提交订单
+        else if (id == R.id.shopping_submit_tv) {
+            viewModel.newDeal(orderMap);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("order", 1);
+            startActivity(intent);
         }
     }
 

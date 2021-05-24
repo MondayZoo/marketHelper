@@ -14,8 +14,6 @@ import com.month.markethelper.utils.EmptyMessage;
 import org.greenrobot.eventbus.EventBus;
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 public class UserFragment extends BaseFragment<FragmentUserBinding> implements View.OnClickListener{
 
@@ -71,6 +69,6 @@ public class UserFragment extends BaseFragment<FragmentUserBinding> implements V
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString("user", null);
         edit.apply();
-        EventBus.getDefault().post(EmptyMessage.getInstance(EmptyMessage.STATE_LOGOUT));
+        EventBus.getDefault().post(EmptyMessage.getInstance(EmptyMessage.STATE_USER_LOGOUT));
     }
 }

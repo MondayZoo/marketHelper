@@ -2,21 +2,10 @@ package com.month.markethelper.fragment.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
-import com.gyf.immersionbar.ImmersionBar;
-import com.month.markethelper.MainActivity;
 import com.month.markethelper.R;
 import com.month.markethelper.activity.LoginActivity;
 import com.month.markethelper.activity.StoreActivity;
@@ -26,7 +15,6 @@ import com.month.markethelper.base.BaseFragment;
 import com.month.markethelper.databinding.FragmentHomeBinding;
 import com.month.markethelper.db.entity.Store;
 import com.month.markethelper.utils.EmptyMessage;
-import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerImageAdapter;
 import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
@@ -37,10 +25,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -85,7 +70,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     //---------------------------- EventBus ------------------------------------
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onReceiveMessage(EmptyMessage message) {
-        if (message.code == EmptyMessage.STATE_LOGIN) {
+        if (message.code == EmptyMessage.STATE_USER_LOGIN) {
             binding.loginTipsLl.setVisibility(View.GONE);
             userPhoneNum = sharedPreferences.getString("user", null);
         }

@@ -11,8 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/normal_AppTheme">
-        <activity android:name=".activity.OrderActivity"
-            android:launchMode="singleTop"/>
+        <activity android:name=".activity.management.GoodsChoiceActivity"></activity>
+        <activity
+            android:name=".activity.management.TransferActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.management.InventoryActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.OrderActivity"
+            android:launchMode="singleTop" />
         <activity
             android:name=".activity.management.GoodsInfoActivity"
             android:launchMode="singleTop" />

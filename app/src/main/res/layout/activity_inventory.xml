@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.month.markethelper.activity.management.InventoryViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.management.InventoryActivity"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d_10"
+            android:text="库存管理"
+            android:textStyle="bold"
+            android:textSize="@dimen/s_20"
+            android:textColor="@color/color_FF9000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/d_10"
+            android:layout_marginTop="@dimen/d_04"
+            android:text="查看和管理商品的库存，点击对应商品以设置库存。库存不足的商品将无法销售。" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/inventory_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:padding="@dimen/d_10"/>
+
+    </LinearLayout>
+
+</layout>

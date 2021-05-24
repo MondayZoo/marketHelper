@@ -2,9 +2,10 @@ package com.month.markethelper.utils;
 
 public class EmptyMessage {
 
-    public static final int STATE_LOGIN = 0;    //登录
-    public static final int STATE_LOGOUT = 1;   //注销
-    public static final int STATE_STORE = 2;    //商家
+    public static final int STATE_USER_LOGIN = 0;    //用户登录
+    public static final int STATE_USER_LOGOUT = 1;   //用户注销
+    public static final int STATE_STORE_LOGIN = 2;   //商家登录
+    public static final int STATE_STORE_LOGOUT = 3;  //商家注销
 
     public final int code;
 

@@ -86,7 +86,7 @@ public class LoginActivity extends BaseActivityWithViewModel<ActivityLoginBindin
                 editor.apply();
                 ToastUtils.showToast("登录成功！");
                 //通知Fragment进行相应的UI调整
-                EventBus.getDefault().post(EmptyMessage.getInstance(EmptyMessage.STATE_LOGIN));
+                EventBus.getDefault().post(EmptyMessage.getInstance(EmptyMessage.STATE_USER_LOGIN));
                 //返回MainActivity
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);

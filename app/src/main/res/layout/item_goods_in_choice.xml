@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/d_80"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingVertical="@dimen/d_05">
+
+    <ImageView
+        android:id="@+id/goods_pic_iv"
+        android:layout_width="@dimen/d_70"
+        android:layout_height="@dimen/d_70"
+        android:layout_marginEnd="@dimen/d_10"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/goods_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/goods_pic_iv"
+        android:layout_toEndOf="@id/goods_pic_iv"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="@color/black"
+        tools:text="康师傅红烧牛肉面优惠装"/>
+
+    <TextView
+        android:id="@+id/goods_inventory_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/goods_pic_iv"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/s_14"
+        tools:text="库存：100"/>
+
+</RelativeLayout>

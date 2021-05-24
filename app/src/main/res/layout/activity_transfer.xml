@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.month.markethelper.activity.management.TransferViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.management.TransferActivity"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/d_10"
+            android:background="@drawable/ui_shape_underline">
+
+            <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/s_16"
+                style="@style/text_bold_black_style"
+                android:text="当前选中的商品："/>
+
+            <ImageView
+                android:id="@+id/goods_pic_iv"
+                android:layout_width="@dimen/d_60"
+                android:layout_height="@dimen/d_60"
+                android:layout_marginTop="@dimen/d_05"
+                android:layout_marginEnd="@dimen/d_10"
+                android:layout_below="@id/title_tv"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/goods_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/goods_pic_iv"
+                android:layout_below="@id/title_tv"
+                android:layout_marginTop="@dimen/d_05"
+                tools:text="呜呜呜"/>
+
+            <TextView
+                android:id="@+id/goods_inventory_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/goods_pic_iv"
+                android:layout_alignBottom="@id/goods_pic_iv"
+                tools:text="库存：50"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</layout>

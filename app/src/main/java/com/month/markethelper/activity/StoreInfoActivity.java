@@ -126,7 +126,7 @@ public class StoreInfoActivity extends BaseActivityWithViewModel<ActivityStoreIn
             @Override
             public boolean onItemLongClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
                 //通知主页更新
-                EventBus.getDefault().post(EmptyMessage.getInstance(EmptyMessage.STATE_STORE));
+                EventBus.getDefault().post(EmptyMessage.getInstance(EmptyMessage.STATE_STORE_LOGIN));
                 //更新主页状态为商家状态
                 store = (Store) adapter.getData().get(position);
                 SharedPreferences.Editor editor = sharedPreferences.edit();

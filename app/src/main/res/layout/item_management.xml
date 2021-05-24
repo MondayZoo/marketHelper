@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:contentPadding="@dimen/d_12"
-    app:cardCornerRadius="@dimen/d_06">
+    app:cardCornerRadius="@dimen/d_06"
+    android:layout_marginBottom="@dimen/d_10">
 
     <TextView
         android:id="@+id/icon_tv"
