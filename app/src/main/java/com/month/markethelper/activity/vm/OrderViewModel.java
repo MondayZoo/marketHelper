@@ -87,7 +87,8 @@ public class OrderViewModel extends ViewModel {
             sb.append(";");
             //更新库存
             Goods goods = goodsDAO.findGoodsById(goodsId);
-            goods.setInventory(goods.getInventory() - amount);
+            int inventory = goods.getInventory() - amount;
+            goods.setInventory(Math.max(inventory, 0));
             goodsDAO.update(goods);
         }
         //待存储的交易类

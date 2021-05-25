@@ -29,8 +29,12 @@ public class ToolsViewModel extends ViewModel {
     }
 
     //------------------------Database Operation----------------------------
-    public LiveData<List<Deal>> getDeal() {
+    public LiveData<List<Deal>> getUserDeal() {
         return dealDAO.getDealByUserId(userId);
+    }
+
+    public LiveData<List<Deal>> getStoreDeal(long storeId) {
+        return dealDAO.getDealByStoreId(storeId);
     }
 
     public void updateDeal(Deal deal) {

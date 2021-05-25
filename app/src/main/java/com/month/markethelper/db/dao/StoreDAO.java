@@ -71,4 +71,13 @@ public interface StoreDAO {
      */
     @Query("SELECT store_name FROM Store WHERE id = :storeId")
     String getStoreName(long storeId);
+
+    /**
+     * 判断某店铺是否属于某用户
+     * @param phoneNum 用户手机号
+     * @param storeId  店铺ID
+     * @return 店铺名
+     */
+    @Query("SELECT COUNT(*) FROM STORE WHERE phone_num = :phoneNum AND id = :storeId" )
+    int findStoreBelong(String phoneNum, long storeId);
 }

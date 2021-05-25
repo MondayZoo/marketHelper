@@ -1,7 +1,12 @@
 package com.month.markethelper.activity.vm;
 
 import com.month.markethelper.db.MarketDatabase;
+import com.month.markethelper.db.dao.CommentDAO;
+import com.month.markethelper.db.dao.DealDAO;
+import com.month.markethelper.db.dao.GoodsDAO;
 import com.month.markethelper.db.dao.StoreDAO;
+import com.month.markethelper.db.entity.Comment;
+import com.month.markethelper.db.entity.Deal;
 import com.month.markethelper.db.entity.Store;
 
 import java.util.List;
@@ -13,6 +18,9 @@ import androidx.lifecycle.ViewModel;
 public class StoreInfoViewModel extends ViewModel {
 
     private StoreDAO storeDAO;
+    private GoodsDAO goodsDAO;
+    private DealDAO dealDAO;
+    private CommentDAO commentDAO;
 
     private MutableLiveData<String> actionbarTitle;
     private MutableLiveData<String> actionbarRightText;
@@ -33,6 +41,9 @@ public class StoreInfoViewModel extends ViewModel {
 
         MarketDatabase marketDatabase = MarketDatabase.getInstance();
         storeDAO = marketDatabase.getStoreDao();
+        goodsDAO = marketDatabase.getGoodsDao();
+        dealDAO = marketDatabase.getDealDao();
+        commentDAO = marketDatabase.getCommentDao();
         initLiveData();
     }
 
@@ -84,6 +95,9 @@ public class StoreInfoViewModel extends ViewModel {
 
     public void deleteStore(Store store) {
         storeDAO.delete(store);
+        goodsDAO.deleteByStoreId(store.getId());
+        dealDAO.deleteByStoreId(store.getId());
+        commentDAO.deleteByStoreId(store.getId());
     }
 
 

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -24,6 +25,8 @@ import com.month.markethelper.db.entity.Goods;
 import java.util.List;
 
 public class GoodsChoiceActivity extends BaseActivityWithViewModel<ActivityChooseGoodsBinding> {
+
+    public static final String TAG = "GoodsChoiceActivity";
 
     private GoodsChoiceViewModel viewModel;
 
@@ -57,7 +60,7 @@ public class GoodsChoiceActivity extends BaseActivityWithViewModel<ActivityChoos
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 Goods goods = (Goods) adapter.getData().get(position);
                 Intent intent = new Intent(GoodsChoiceActivity.this, TransferActivity.class);
-                intent.putExtra("goods", goods);
+                intent.putExtra("goodsId", goods.getId());
                 startActivity(intent);
             }
         });

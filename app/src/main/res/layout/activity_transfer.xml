@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activity.management.TransferActivity"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -56,6 +57,12 @@
                 tools:text="库存：50"/>
 
         </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/similar_Rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/d_10"/>
 
     </LinearLayout>
 

@@ -2,11 +2,17 @@ package com.month.markethelper;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.util.Log;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.month.markethelper.activity.LoginActivity;
 import com.month.markethelper.base.BaseActivity;
+import com.month.markethelper.db.MarketDatabase;
+import com.month.markethelper.db.dao.CommentDAO;
+import com.month.markethelper.db.dao.DealDAO;
+import com.month.markethelper.db.dao.GoodsDAO;
+import com.month.markethelper.db.entity.Goods;
 import com.month.markethelper.utils.EmptyMessage;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -35,6 +41,14 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+//        MarketDatabase marketDatabase = MarketDatabase.getInstance();
+//        GoodsDAO goodsDao = marketDatabase.getGoodsDao();
+//        DealDAO dealDAO = marketDatabase.getDealDao();
+//        CommentDAO commentDAO = marketDatabase.getCommentDao();
+//        goodsDao.deleteByStoreId(1);
+//        dealDAO.deleteByStoreId(1);
+//        commentDAO.deleteByStoreId(1);
 
         navView = findViewById(R.id.nav_view);
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/ui_shape_underline"
+    android:layout_marginTop="@dimen/d_10">
+
+    <TextView
+        android:id="@+id/store_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/text_bold_black_style"
+        android:textSize="@dimen/s_18"
+        android:text="老王杂货铺"/>
+
+    <TextView
+        android:id="@+id/distance_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/store_name_tv"
+        android:layout_alignBaseline="@id/store_name_tv"
+        android:layout_marginStart="@dimen/d_10"
+        tools:text="距您100m"/>
+
+    <TextView
+        android:id="@+id/tips_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:paddingVertical="@dimen/d_02"
+        android:paddingHorizontal="@dimen/d_08"
+        android:background="@drawable/ui_shape_corner_12dp_red"
+        android:textSize="@dimen/s_13"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:text="自家店铺"/>
+
+    <LinearLayout
+        android:id="@+id/phone_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="@dimen/d_04"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/phone_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="电话联系"/>
+
+        <TextView
+            android:id="@+id/phone_pic_tv"
+            android:layout_width="@dimen/d_24"
+            android:layout_height="@dimen/d_20"
+            android:background="@drawable/ic_phone"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/similar_goods_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/d_05"
+        android:layout_below="@id/store_name_tv"
+        android:overScrollMode="never"
+        android:paddingBottom="@dimen/d_05" />
+
+</RelativeLayout>

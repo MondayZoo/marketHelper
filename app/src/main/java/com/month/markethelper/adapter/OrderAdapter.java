@@ -15,6 +15,7 @@ import com.month.markethelper.bean.GoodsAndCountBean;
 import com.month.markethelper.db.MarketDatabase;
 import com.month.markethelper.db.dao.GoodsDAO;
 import com.month.markethelper.db.dao.StoreDAO;
+import com.month.markethelper.db.dao.UserDAO;
 import com.month.markethelper.db.entity.Deal;
 import com.month.markethelper.db.entity.Goods;
 import com.month.markethelper.utils.BitmapUtils;
@@ -27,29 +28,43 @@ public class OrderAdapter extends BaseQuickAdapter<Deal, BaseViewHolder> {
 
     private StoreDAO storeDAO;
     private GoodsDAO goodsDAO;
+    private UserDAO userDAO;
 
-    public OrderAdapter(Context context) {
+    private int mode;
+
+    public OrderAdapter(Context context, int mode) {
         super(R.layout.item_order);
         this.context = context;
+        this.mode = mode;
 
         MarketDatabase marketDatabase = MarketDatabase.getInstance();
         storeDAO = marketDatabase.getStoreDao();
         goodsDAO = marketDatabase.getGoodsDao();
+        userDAO = marketDatabase.getUserDao();
     }
 
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, Deal deal) {
-        //店铺名
-        baseViewHolder.setText(R.id.store_name_tv, storeDAO.getStoreName(deal.getStoreId()));
-        //交易情况
+        //*交易情况
         TextView statusTv = baseViewHolder.findView(R.id.deal_status_tv);
         statusTv.setText(deal.getStatus());
         statusTv.setTextColor(deal.getStatus().equals("交易中") ? context.getColor(R.color.green) : context.getColor(R.color.color_D10D0B));
-        baseViewHolder.setVisible(R.id.order_confirm_tv, deal.getStatus().equals("交易中"));
-        baseViewHolder.setVisible(R.id.order_refuse_tv, deal.getStatus().equals("交易中"));
-        //商品信息
+        //用户订单
+        if (mode == 0) {
+            String storeName = storeDAO.getStoreName(deal.getStoreId());
+            baseViewHolder.setText(R.id.store_name_tv, storeName == null ? "店铺已注销" : storeName);
+            baseViewHolder.setVisible(R.id.order_confirm_tv, deal.getStatus().equals("交易中"));
+            baseViewHolder.setVisible(R.id.order_refuse_tv, deal.getStatus().equals("交易中"));
+        }
+        //商家订单
+        else {
+            baseViewHolder.setText(R.id.store_name_tv, userDAO.findUserById(deal.getCustomerId()).getNickName());
+            baseViewHolder.setVisible(R.id.order_confirm_tv, false);
+            baseViewHolder.setVisible(R.id.order_refuse_tv, false);
+        }
+        //*商品信息
         baseViewHolder.setText(R.id.goods_price_tv, "￥" + deal.getTotalPrice());
-        //购买的商品id与数理
+        //*购买的商品id与数理
         String[] str1 = deal.getGoods().split(";");
         boolean flag = false;
         int count = 0;

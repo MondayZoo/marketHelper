@@ -18,11 +18,14 @@ import com.month.markethelper.db.entity.Goods;
 import com.month.markethelper.db.entity.Store;
 import com.month.markethelper.db.entity.User;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.migration.Migration;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {User.class, Store.class, Goods.class, Deal.class, Funding.class, AddressInfo.class, Comment.class}, version = 2, exportSchema = false)
+@Database(entities = {User.class, Store.class, Goods.class, Deal.class, Funding.class, AddressInfo.class, Comment.class}, version = 3, exportSchema = false)
 public abstract class   MarketDatabase extends RoomDatabase {
 
     private volatile static MarketDatabase INSTANCE;
@@ -33,6 +36,7 @@ public abstract class   MarketDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(BaseApplication.getAppContext(), MarketDatabase.class, "market_database")
                             .allowMainThreadQueries()
+                            .addMigrations(MIGRATION_2_3)
                             .build();
                 }
             }
@@ -48,4 +52,10 @@ public abstract class   MarketDatabase extends RoomDatabase {
     public abstract AddressInfoDAO getAddressInfoDao();
     public abstract CommentDAO getCommentDao();
 
+    static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE GOODS ADD COLUMN substitute INTEGER NOT NULL DEFAULT 0");
+        }
+    };
 }

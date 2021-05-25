@@ -31,7 +31,6 @@ public class MenuViewModel extends ViewModel {
         storeDAO = marketDatabase.getStoreDao();
         goodsDAO = marketDatabase.getGoodsDao();
         initLiveData();
-
     }
 
     private void initLiveData() {

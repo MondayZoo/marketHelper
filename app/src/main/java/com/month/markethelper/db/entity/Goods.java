@@ -39,6 +39,9 @@ public class Goods implements Serializable {
     //商品库存
     private int inventory = 0;
 
+    //代替的商品id
+    private long substitute = 0;
+
     public long getId() {
         return id;
     }
@@ -117,5 +120,13 @@ public class Goods implements Serializable {
 
     public void setInventory(int inventory) {
         this.inventory = inventory;
+    }
+
+    public long getSubstitute() {
+        return substitute;
+    }
+
+    public void setSubstitute(long substitute) {
+        this.substitute = substitute;
     }
 }

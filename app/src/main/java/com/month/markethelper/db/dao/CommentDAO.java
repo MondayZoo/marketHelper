@@ -51,4 +51,7 @@ public interface CommentDAO {
      */
     @Query("SELECT COUNT(*) FROM comment WHERE store_id = :storeId AND rating > 3")
     int getFavoriteCountByStoreId(long storeId);
+
+    @Query("DELETE FROM Comment WHERE store_id = :storeId")
+    void deleteByStoreId(long storeId);
 }

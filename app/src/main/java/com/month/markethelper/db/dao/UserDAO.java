@@ -24,7 +24,9 @@ public interface UserDAO {
      * @param phoneNum 手机号
      * @return 用户
      */
-    @Query("SELECT * FROM User where phone_num = :phoneNum")
+    @Query("SELECT * FROM User WHERE phone_num = :phoneNum")
     User findUser(String phoneNum);
 
+    @Query("SELECT * FROM User WHERE id = :userId")
+    User findUserById(long userId);
 }

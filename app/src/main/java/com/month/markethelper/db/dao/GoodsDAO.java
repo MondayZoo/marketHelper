@@ -3,9 +3,11 @@ package com.month.markethelper.db.dao;
 import com.month.markethelper.db.entity.Goods;
 
 import java.util.List;
+import java.util.Set;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -50,4 +52,19 @@ public interface GoodsDAO {
 
     @Update
     void update(Goods goods);
+
+    @Query("DELETE FROM GOODS WHERE id = :goodsId")
+    void delete(long goodsId);
+
+    /**
+     * 查找相似的商品
+     * @param pattern
+     * @return 相似的商品列表
+     */
+    @Query("SELECT * FROM Goods WHERE name LIKE :pattern1 OR :pattern2")
+    List<Goods> findSimilarGoods(String pattern1, String pattern2);
+
+
+    @Query("DELETE FROM Goods WHERE store_id = :storeId")
+    void deleteByStoreId(long storeId);
 }
